@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — London Marathon Pacing Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <span class="nav-logo-dot"></span>
+      London Marathon · Pacing Analysis
+    </a>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="findings.html">Deep&nbsp;Dive</a></li>
+      <li><a href="names.html">Names</a></li>
+      <li><a href="countries.html">Countries</a></li>
+      <li><a href="about.html" class="nav-active">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Page header -->
+<div style="background:var(--bg-subtle); border-bottom:1px solid var(--border); padding:3.5rem 1.75rem 3rem;">
+  <div class="container">
+    <div class="section-label">About This Project</div>
+    <h2 style="font-size:2rem; margin-bottom:0.5rem;">How and Why</h2>
+    <p style="color:var(--text-muted); font-size:0.97rem; max-width:620px; margin:0;">
+      The story behind the analysis — what motivated it, how it was built, and what it demonstrates.
+    </p>
+  </div>
+</div>
+
+<!-- Content -->
+<section>
+  <div class="container">
+    <div class="about-body">
+
+      <div class="about-section">
+        <div class="about-section-label">01</div>
+        <div class="about-section-content">
+          <h3>Why I Built This</h3>
+          <p>
+            I have run several marathons. My first did not go particularly well — I went off too fast,
+            paid for it from about 30km onwards, and finished considerably slower than I should have.
+            It is a very common experience. What interested me afterwards was not the physical side
+            but the decision-making: almost everyone who blows up in a marathon does so in exactly
+            the same way, at roughly the same point, for the same reason.
+          </p>
+          <p>
+            I wanted to know whether that was actually true in the data, and if so, by how much.
+            The London Marathon publishes split times for hundreds of thousands of runners going back
+            over a decade. That felt like a dataset worth taking seriously.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label">02</div>
+        <div class="about-section-content">
+          <h3>What This Project Does</h3>
+          <p>
+            The analysis covers 390,000 finishers across eleven years of London Marathon results
+            (2014–2025). It looks at how runners pace their races — specifically the relationship
+            between how fast they start and how much they slow down in the second half.
+          </p>
+          <p>
+            The core finding is quantified: starting 10% faster than runners at your ability level
+            is associated with an additional 11 minutes of second-half fade. The project also
+            covers year-on-year trends, gender differences in pacing discipline, age effects within
+            ability groups, and a breakdown of which countries and runner profiles produce the most
+            even pacing. There is a race strategy calculator that applies the regression model
+            to a user's own target time.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <div class="about-section-label">03</div>
+        <div class="about-section-content">
+          <h3>How I Approached It</h3>
+          <p>
+            The project runs as a structured Python pipeline: data cleaning, feature engineering,
+            statistical analysis, and site output as four discrete stages. Each stage is
+            reproducible and logged. Raw data required substantial cleaning — handling missing
+            splits, inconsistent nationality codes, and name parsing across 45,000 distinct
+            first names.
+          </p>
+          <p>
+            The frontend is plain HTML, CSS, and JavaScript with Chart.js — no frameworks,
+            no build step, no dependencies to break. That was a deliberate choice: the
+            analysis should be what stands up, not the tooling around it. The charts are
+            interactive but the underlying numbers are embedded directly in the page, so
+            everything works without a server.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-section" style="border-bottom:none;">
+        <div class="about-section-label">04</div>
+        <div class="about-section-content">
+          <h3>What It Demonstrates</h3>
+          <p>
+            The strongest correlation in the dataset — r = 0.94 — is between pacing consistency
+            and finish time. That is not surprising in isolation. What is useful is being able
+            to show it precisely, control for ability group, and isolate it from confounding
+            factors like field composition and race conditions.
+          </p>
+          <p>
+            More broadly, the project is an exercise in turning a large, messy dataset into
+            something that communicates clearly. The technical work is only useful if the
+            conclusions are easy to understand. That balance — rigorous analysis presented
+            simply — is what I was trying to get right.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stat strip -->
+    <div class="about-stats">
+      <div class="about-stat">
+        <div class="about-stat-num">390,000</div>
+        <div class="about-stat-lbl">Runners analysed</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">11 years</div>
+        <div class="about-stat-lbl">2014 – 2025</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">10 charts</div>
+        <div class="about-stat-lbl">Interactive findings</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">r = 0.94</div>
+        <div class="about-stat-lbl">Pacing consistency vs finish time</div>
+      </div>
+    </div>
+
+    <!-- Tech stack -->
+    <div class="about-stack">
+      <div class="about-stack-label">Built with</div>
+      <div class="about-stack-items">
+        <span class="about-stack-tag">Python</span>
+        <span class="about-stack-tag">pandas</span>
+        <span class="about-stack-tag">NumPy</span>
+        <span class="about-stack-tag">matplotlib</span>
+        <span class="about-stack-tag">SciPy</span>
+        <span class="about-stack-tag">HTML / CSS / JS</span>
+        <span class="about-stack-tag">Chart.js</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p class="footer-contact">
+      <strong>Ben Jones</strong>
+      &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/ben-jones-98b57a19a/" target="_blank" rel="noopener">LinkedIn</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/benjones1996" target="_blank" rel="noopener">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:bjonesreselling@gmail.com">bjonesreselling@gmail.com</a>
+    </p>
+    <p>
+      Data sourced from the
+      <a href="https://results.tcslondonmarathon.com" target="_blank" rel="noopener">TCS London Marathon results platform</a>
+      (mika:timing GmbH) — for personal analysis use only.
+    </p>
+    <p>Built with Python · pandas · plain HTML / CSS / JS</p>
+  </div>
+</footer>
+
+<script src="reveal.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>
