@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Names — London Marathon Pacing Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <span class="nav-logo-dot"></span>
+      London Marathon · Pacing Analysis
+    </a>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="findings.html">Deep&nbsp;Dive</a></li>
+      <li><a href="names.html" class="nav-active">Names</a></li>
+      <li><a href="countries.html">Countries</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Page header -->
+<div style="background:var(--bg-subtle); border-bottom:1px solid var(--border); padding:3.5rem 1.75rem 3rem;">
+  <div class="container">
+    <div class="section-label">Fun with the Data</div>
+    <h2 style="font-size:2rem; margin-bottom:0.5rem;">Names</h2>
+    <p style="color:var(--text-muted); font-size:0.97rem; max-width:580px; margin:0;">
+      390,000 runners. 45,000 distinct first names. Some patterns are obvious in hindsight — others
+      are genuinely surprising. All of it is drawn directly from the race results.
+    </p>
+  </div>
+</div>
+
+<!-- All sections -->
+<section id="names-content">
+  <div class="container">
+
+    <!-- ── 1. Most Common Names ─────────────────────────────────────────── -->
+    <div class="chart-block">
+      <div class="chart-label">Names · Most Common</div>
+      <div class="nc-freq-grid">
+        <div>
+          <p class="nc-chart-heading">Top 10 Male First Names</p>
+          <div class="canvas-wrap" style="height:280px;">
+            <canvas id="chart-male-names"></canvas>
+          </div>
+        </div>
+        <div>
+          <p class="nc-chart-heading">Top 10 Female First Names</p>
+          <div class="canvas-wrap" style="height:280px;">
+            <canvas id="chart-female-names"></canvas>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;">
+        <p class="nc-chart-heading">Top 10 Surnames</p>
+        <div class="canvas-wrap" style="height:280px; max-width:520px;">
+          <canvas id="chart-surnames"></canvas>
+        </div>
+      </div>
+      <div class="chart-caption" style="margin-top:1.2rem;">
+        <div><h3>A Very British Field</h3></div>
+        <div class="chart-caption-text">
+          <p>
+            The most common male names — David, James, Paul — read like a register from a mid-1970s
+            British school. That tracks: most London Marathon runners are in their 40s, and GBR
+            accounts for 81% of the field.
+          </p>
+          <p>
+            The female list skews slightly younger: Sarah leads, but Emma, Laura, and Hannah point to
+            a cohort born in the late 1980s and early 1990s. The surname list is the top 10
+            most common surnames in England — Smith, Jones, Williams — almost in rank order.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 2. Fastest / Slowest Names ──────────────────────────────────── -->
+    <div class="chart-block">
+      <div class="chart-label">Names · Average Finish Time</div>
+      <div class="nc-freq-grid">
+        <div>
+          <p class="nc-chart-heading">10 Fastest Names (avg finish)</p>
+          <div class="canvas-wrap" style="height:290px;">
+            <canvas id="chart-fastest-names"></canvas>
+          </div>
+        </div>
+        <div>
+          <p class="nc-chart-heading">10 Slowest Names (avg finish)</p>
+          <div class="canvas-wrap" style="height:290px;">
+            <canvas id="chart-slowest-names"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="chart-caption" style="margin-top:1.2rem;">
+        <div><h3>What's in a Name?</h3></div>
+        <div class="chart-caption-text">
+          <p>
+            The fastest names are predominantly European — Guillaume, Marcin, Julien, Tomasz,
+            Michal, Antoine. That is not a coincidence: France, Poland, and Spain produce
+            disproportionately fast runners relative to their field size (see the Countries page),
+            and their common first names dominate this list.
+          </p>
+          <p>
+            The slowest list is almost entirely female names — Maureen, Stacy, Jacqui, Sylvia,
+            Aimee. This reflects the gender pace gap, not anything name-specific.
+          </p>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin-top:0.5rem;">
+            Minimum 50 runners per name. These are averages — influenced by the demographic mix
+            behind each name, not anything causal.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 3. Most Typical Runner ───────────────────────────────────────── -->
+    <div class="chart-block">
+      <div class="chart-label">Names · The Modal Runner</div>
+      <div class="nc-typical-card">
+        <div class="nc-typical-header">
+          <h3>The Most Typical London Marathon Runner</h3>
+          <p>The mode across four dimensions — the single most common value in each category.</p>
+        </div>
+        <div class="nc-typical-grid">
+          <div class="nc-typical-item">
+            <span class="nc-typical-val">David</span>
+            <span class="nc-typical-lbl">Most common first name</span>
+          </div>
+          <div class="nc-typical-item">
+            <span class="nc-typical-val">Smith</span>
+            <span class="nc-typical-lbl">Most common surname</span>
+          </div>
+          <div class="nc-typical-item">
+            <span class="nc-typical-val">Male</span>
+            <span class="nc-typical-lbl">Most common gender (60%)</span>
+          </div>
+          <div class="nc-typical-item">
+            <span class="nc-typical-val">5:00–6:00</span>
+            <span class="nc-typical-lbl">Most common finish band</span>
+          </div>
+        </div>
+        <p class="nc-typical-note">
+          There are 60 runners named David Smith in the dataset. Their finish times range from 2:51 to 8:11.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 3b. A note on Ben Jones ─────────────────────────────────────── -->
+    <div class="callout" style="border-left-color:var(--red); margin-bottom:2.5rem;">
+      <strong style="color:var(--red);">A note on Ben Jones.</strong>
+      There are <strong style="color:var(--text-mid);">18 people named Ben Jones</strong>
+      in this dataset. The 2022 edition — 4:56:39, 18–39 category — recorded a split ratio of
+      <strong style="color:var(--text-mid);">1.085</strong>, meaning their second half was only
+      8.5% slower than their first. That puts them in the top <strong style="color:var(--text-mid);">13%
+      for pacing discipline</strong> within the 4:30–5:00 finish band, where the median runner
+      fades by 15.7%. In short: finished mid-pack, paced like someone who had read the data first.
+      The fastest Ben Jones in the dataset ran <strong style="color:var(--text-mid);">2:39:25 in 2019</strong>.
+      We can't confirm they're a different person.
+    </div>
+
+    <!-- ── 4. Same Name, Different Outcomes ────────────────────────────── -->
+    <div class="chart-block">
+      <div class="chart-label">Names · Shared Identity</div>
+      <div class="chart-caption" style="margin-bottom:1.5rem;">
+        <div><h3>Same Name, Very Different Race</h3></div>
+        <div class="chart-caption-text">
+          <p>
+            These runners share an identical full name. Every row below is a group of real people
+            who registered as the same name — and ran completely different races.
+          </p>
+          <p>
+            The largest gap in the dataset belongs to the 33 people named Sarah Jones, whose finish
+            times span from 3:08 to 9:35 — a gap of over six hours.
+          </p>
+        </div>
+      </div>
+      <div class="nc-table-wrap">
+        <table class="nc-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Runners</th>
+              <th>Fastest</th>
+              <th>Slowest</th>
+              <th>Gap</th>
+            </tr>
+          </thead>
+          <tbody id="same-name-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── 5. Name Diversity ────────────────────────────────────────────── -->
+    <div class="chart-block" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
+      <div class="chart-label">Names · Diversity</div>
+      <div class="nc-diversity-grid">
+        <div class="nc-diversity-card">
+          <div class="nc-diversity-num">45,657</div>
+          <div class="nc-diversity-lbl">Distinct first names</div>
+          <p class="nc-diversity-desc">Across 390,000 runners — a ratio of roughly 8 runners per unique first name.</p>
+        </div>
+        <div class="nc-diversity-card">
+          <div class="nc-diversity-num">31,792</div>
+          <div class="nc-diversity-lbl">Names that appear exactly once</div>
+          <p class="nc-diversity-desc">70% of all distinct first names belong to a single runner in the dataset. One each: Chinju, Youngsoon, Voula, Zhening, Tiki, Sanjana.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p class="footer-contact">
+      <strong>Ben Jones</strong>
+      &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/ben-jones-98b57a19a/" target="_blank" rel="noopener">LinkedIn</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/benjones1996" target="_blank" rel="noopener">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:bjonesreselling@gmail.com">bjonesreselling@gmail.com</a>
+    </p>
+    <p>
+      Data sourced from the
+      <a href="https://results.tcslondonmarathon.com" target="_blank" rel="noopener">TCS London Marathon results platform</a>
+      (mika:timing GmbH) — for personal analysis use only.
+    </p>
+    <p>Built with Python · pandas · plain HTML / CSS / JS</p>
+  </div>
+</footer>
+
+<script type="application/json" id="nc-data">
+{"names":{"male_top10":[{"name":"David","count":5864},{"name":"James","count":5549},{"name":"Paul","count":5122},{"name":"Mark","count":4493},{"name":"Andrew","count":4430},{"name":"Richard","count":3534},{"name":"Michael","count":3497},{"name":"Chris","count":3404},{"name":"John","count":3395},{"name":"Matthew","count":3127}],"female_top10":[{"name":"Sarah","count":3435},{"name":"Emma","count":2590},{"name":"Laura","count":1994},{"name":"Claire","count":1846},{"name":"Rebecca","count":1774},{"name":"Helen","count":1668},{"name":"Rachel","count":1667},{"name":"Hannah","count":1562},{"name":"Emily","count":1405},{"name":"Charlotte","count":1396}],"surname_top10":[{"name":"Smith","count":3552},{"name":"Jones","count":2654},{"name":"Williams","count":2032},{"name":"Brown","count":1717},{"name":"Taylor","count":1669},{"name":"Davies","count":1504},{"name":"Evans","count":1246},{"name":"Wilson","count":1229},{"name":"Thomas","count":1163},{"name":"Johnson","count":1061}],"fastest10":[{"name":"Guillaume","count":69,"avg_sec":13133},{"name":"Marcin","count":59,"avg_sec":13461},{"name":"Euan","count":68,"avg_sec":13496},{"name":"Tomasz","count":56,"avg_sec":13526},{"name":"Julien","count":76,"avg_sec":13635},{"name":"Michal","count":59,"avg_sec":13650},{"name":"Diego","count":91,"avg_sec":13653},{"name":"Antoine","count":59,"avg_sec":13716},{"name":"Sebastien","count":68,"avg_sec":13776},{"name":"Nicolas","count":187,"avg_sec":13838}],"slowest10":[{"name":"Victoria Louise","count":50,"avg_sec":19150},{"name":"Aimee","count":141,"avg_sec":19117},{"name":"Jodie","count":215,"avg_sec":19039},{"name":"Maxine","count":69,"avg_sec":19000},{"name":"Kayleigh","count":98,"avg_sec":18987},{"name":"Kellie","count":56,"avg_sec":18903},{"name":"Sylvia","count":64,"avg_sec":18900},{"name":"Jacqui","count":87,"avg_sec":18870},{"name":"Stacy","count":54,"avg_sec":18867},{"name":"Maureen","count":83,"avg_sec":18813}],"same_name_range":[{"name":"Sarah Jones","count":33,"min_fmt":"3:08:14","max_fmt":"9:35:28","range_min":387},{"name":"Matthew Lloyd","count":5,"min_fmt":"3:04:11","max_fmt":"9:20:11","range_min":376},{"name":"Sarah Williams","count":19,"min_fmt":"2:50:51","max_fmt":"9:04:08","range_min":373},{"name":"Neil Casey","count":7,"min_fmt":"2:46:48","max_fmt":"8:49:13","range_min":362},{"name":"Ross Clarke","count":5,"min_fmt":"2:59:25","max_fmt":"8:58:13","range_min":359},{"name":"Sharon Williams","count":5,"min_fmt":"3:29:54","max_fmt":"9:16:26","range_min":347},{"name":"James Miller","count":12,"min_fmt":"2:33:54","max_fmt":"8:16:51","range_min":343},{"name":"Richard Whiting","count":5,"min_fmt":"3:51:29","max_fmt":"9:31:51","range_min":340}]}}
+</script>
+<script src="names_countries.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var nc = JSON.parse(document.getElementById("nc-data").textContent);
+  var nd = nc.names;
+
+  buildNameFreqChart("chart-male-names",   nd.male_top10,   "rgba(29,100,176,0.82)");
+  buildNameFreqChart("chart-female-names", nd.female_top10, "rgba(204,30,58,0.82)");
+  buildNameFreqChart("chart-surnames",     nd.surname_top10,"rgba(224,138,30,0.85)");
+  buildNameSpeedChart("chart-fastest-names", nd.fastest10, "rgba(29,100,176,0.82)");
+  buildNameSpeedChart("chart-slowest-names", nd.slowest10, "rgba(224,138,30,0.88)");
+
+  // Same name table
+  var tbody = document.getElementById("same-name-tbody");
+  nd.same_name_range.forEach(function (row) {
+    var tr = document.createElement("tr");
+    var gapH = Math.floor(row.range_min / 60);
+    var gapM = row.range_min % 60;
+    var gapStr = gapH > 0 ? gapH + "h " + gapM + "m" : gapM + "m";
+    tr.innerHTML =
+      "<td><strong>" + row.name + "</strong></td>" +
+      "<td>" + row.count + "</td>" +
+      "<td class='nc-time-fast'>" + row.min_fmt + "</td>" +
+      "<td class='nc-time-slow'>" + row.max_fmt + "</td>" +
+      "<td><strong>" + gapStr + "</strong></td>";
+    tbody.appendChild(tr);
+  });
+});
+</script>
+<script src="reveal.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>

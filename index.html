@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>London Marathon Pacing Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <span class="nav-logo-dot"></span>
+      London Marathon · Pacing Analysis
+    </a>
+    <div class="nav-gender-toggle" id="nav-gender-toggle">
+      <button class="nav-gender-btn active" data-gender="all">All</button>
+      <button class="nav-gender-btn" data-gender="men">Men</button>
+      <button class="nav-gender-btn" data-gender="women">Women</button>
+    </div>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#findings">Findings</a></li>
+      <li><a href="#your-band">Bands</a></li>
+      <li><a href="#calculator">Calculator</a></li>
+      <li><a href="#analysis">Charts</a></li>
+      <li><a href="findings.html">Deep&nbsp;Dive</a></li>
+      <li><a href="#methodology">Method</a></li>
+      <li><a href="names.html">Names</a></li>
+      <li><a href="countries.html">Countries</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      Data Analysis &nbsp;·&nbsp; London Marathon &nbsp;·&nbsp; 390,000 Finishers
+    </div>
+    <h1>Starting 10% Too Fast<br>Costs the Typical Runner<br>11 Minutes. Proven.</h1>
+    <p class="hero-subtitle">
+      11 years. 390,000 finishers. One result stands out: how fast you start
+      <em>relative to your ability group</em> predicts your second-half collapse
+      far more reliably than your raw pace. Here is the evidence.
+    </p>
+    <div class="gender-toggle" id="gender-toggle">
+      <button class="gender-btn active" data-gender="all">All finishers</button>
+      <button class="gender-btn" data-gender="men">Men</button>
+      <button class="gender-btn" data-gender="women">Women</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <span class="hero-stat-value" id="stat-runners">390k</span>
+        <span class="hero-stat-label" id="stat-runners-lbl">Finishers analysed</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-value" id="stat-positive">95%</span>
+        <span class="hero-stat-label">Positive split rate</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-value" id="stat-median">4:27</span>
+        <span class="hero-stat-label">Median finish time</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-value" id="stat-ratio">1.127×</span>
+        <span class="hero-stat-label">Median split ratio</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Background</div>
+    <h2>What This Is</h2>
+    <p>
+      390,000 finishers. 11 race years. One key question: does it matter <em>how</em> you pace the
+      first half — not just <em>how fast?</em>
+    </p>
+    <p>
+      The short answer is yes — and the effect is larger than most runners expect. Runners who start
+      10% faster than their ability-group peers lose an average of <strong>11 extra minutes</strong>
+      in the second half, compared to those who start evenly. That finding holds across every finish
+      band from sub-3:00 to 6:00+.
+    </p>
+    <p>
+      Built with Python and pandas for data engineering (scraping, cleaning, feature engineering),
+      statistical regression in NumPy, and Chart.js for interactive visualisation.
+      The key methodological choice: normalising each runner's first-half pace
+      <em>relative to their finish-time peers</em> rather than using raw pace — this within-group
+      approach is what unlocks the r&nbsp;=&nbsp;−0.59 signal and makes the predictor
+      meaningful across all ability levels.
+    </p>
+  </div>
+</section>
+
+<!-- Findings -->
+<section id="findings">
+  <div class="container">
+    <div class="section-label">Key Findings</div>
+    <h2>What the Data Shows</h2>
+    <p class="findings-intro">Six robust findings from 390,000 finishers (n&nbsp;=&nbsp;389,122 with complete split data) across 11 race years.</p>
+    <div class="findings-grid">
+
+      <div class="finding-card">
+        <div class="finding-number" id="find-positive">~95%</div>
+        <div class="finding-title">Run a positive split</div>
+        <p class="finding-desc">The vast majority slow in the second half. Negative splits are genuinely rare — achieved by fewer than 6% of finishers.</p>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-number" id="find-ratio">~1.13×</div>
+        <div class="finding-title">Median split ratio</div>
+        <p class="finding-desc">The typical runner's second half is ~13% slower than their first. The fastest finishers are near 1.03×.</p>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-number">30–35K</div>
+        <div class="finding-title">Where runners slow most</div>
+        <p class="finding-desc">The biggest pace drop across the field occurs in the 30–35km segment — the classic marathon wall, quantified.</p>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-number" id="find-band-diff">—</div>
+        <div class="finding-title">Split ratio gap: fast vs slow</div>
+        <p class="finding-desc">The pacing gap between the fastest and slowest finish bands is large and consistent across all 11 years.</p>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-number" id="find-gender-diff">1.12 vs 1.14</div>
+        <div class="finding-title">Women pace more evenly</div>
+        <p class="finding-desc">Women's median split ratio is lower than men's within every finish time band — a consistent gap across the full dataset.</p>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-number">11 min</div>
+        <div class="finding-title">Cost of starting 10% too fast</div>
+        <p class="finding-desc">Going out 10% faster than your ability group costs ~11 extra minutes in the second half. Raw pace is a weak predictor (r = 0.21) — relative pace is not (r = −0.59).</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Pace bracket selector -->
+<section id="your-band">
+  <div class="container">
+    <div class="section-label">Personalised Insights</div>
+    <h2>What Does This Mean for Your Finish Time?</h2>
+    <p class="pace-intro">Select your target finish band to see how runners like you typically pace — and what the data suggests.</p>
+
+    <div class="band-buttons">
+      <button class="band-btn" data-band="sub3">Sub-3:00</button>
+      <button class="band-btn" data-band="3_330">3:00 – 3:30</button>
+      <button class="band-btn" data-band="330_4">3:30 – 4:00</button>
+      <button class="band-btn active" data-band="4_430">4:00 – 4:30</button>
+      <button class="band-btn" data-band="430_5">4:30 – 5:00</button>
+      <button class="band-btn" data-band="5_6">5:00 – 6:00</button>
+      <button class="band-btn" data-band="6plus">6:00+</button>
+    </div>
+
+    <div class="band-panel" id="band-output">
+      <!-- Filled by script.js on load and on button click -->
+    </div>
+
+  </div>
+</section>
+
+<!-- Race Strategy Calculator -->
+<section id="calculator">
+  <div class="container">
+    <div class="section-label">Race Strategy Tool</div>
+    <h2>Race Strategy Calculator</h2>
+    <p class="calc-intro">
+      The predictor model (r = −0.59) tells you exactly what the data expects from your pacing strategy.
+      Set your target time, adjust how fast you plan to start relative to runners at your level,
+      and see what the 390,000-runner dataset predicts for your finish.
+    </p>
+
+    <div class="calc-panel">
+      <div class="calc-inputs">
+        <div class="calc-input-group">
+          <label class="calc-label" for="calc-target">Target finish time</label>
+          <select id="calc-target" class="calc-select">
+            <option value="9900">2:45</option>
+            <option value="10800">3:00</option>
+            <option value="11700">3:15</option>
+            <option value="12600">3:30</option>
+            <option value="13500">3:45</option>
+            <option value="14400" selected>4:00</option>
+            <option value="15300">4:15</option>
+            <option value="16200">4:30</option>
+            <option value="17100">4:45</option>
+            <option value="18000">5:00</option>
+            <option value="19800">5:30</option>
+            <option value="21600">6:00</option>
+          </select>
+        </div>
+
+        <div class="calc-input-group">
+          <label class="calc-label" for="calc-pace-slider">
+            First-half pace vs your ability group:
+            <span class="calc-pace-display" id="calc-pace-display">Even pace (0%)</span>
+          </label>
+          <input type="range" id="calc-pace-slider" class="calc-slider"
+            min="-20" max="20" value="0" step="1" />
+          <div class="calc-slider-labels">
+            <span>20% faster</span>
+            <span>Even</span>
+            <span>20% slower</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-output" id="calc-output">
+        <!-- filled by script.js -->
+      </div>
+    </div>
+
+    <p class="calc-footnote">
+      Based on linear regression across 390,000 finishers (r = −0.59, slope = −110 pp per unit relative pace).
+      Predictions are population averages — individual results vary with fitness, conditions, and nutrition.
+      "Ability group" means runners who finished in the same time band as your target.
+    </p>
+  </div>
+</section>
+
+<!-- Analysis — 3 key charts -->
+<section id="analysis">
+  <div class="container">
+    <div class="section-label">Key Charts</div>
+    <h2>The Three Core Findings</h2>
+    <p class="analysis-intro">
+      These three charts capture the main story. For the full breakdown across all 10 charts —
+      gender, age, yearly trends, segment pacing, and pacing consistency — see the
+      <a href="findings.html">detailed findings page</a>.
+    </p>
+
+    <!-- Chart 1 — interactive histogram -->
+    <div class="chart-block">
+      <div class="chart-label">Finding 1</div>
+      <div class="canvas-wrap"><canvas id="chart-distribution"></canvas></div>
+      <div class="chart-caption">
+        <div>
+          <h3>Almost No One Runs an Even Split</h3>
+        </div>
+        <div class="chart-caption-text">
+          <p>
+            The distribution of split ratios (second-half ÷ first-half) peaks just above 1.0
+            with a long rightward tail. The median is ~1.13 — the typical runner's second half
+            takes 13% longer than their first. Negative splits are achieved by fewer than 6%
+            of finishers.
+          </p>
+          <p>
+            <strong>Takeaway:</strong> Even pacing is not the norm. Starting conservatively and
+            holding pace is rare, not routine — even among experienced runners.
+          </p>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin-top:0.5rem;">
+            Hover any bar for exact count. Blue = negative split, red = positive split. Toggle Men / Women above to see how the distribution shifts.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart 2 — interactive by-band -->
+    <div class="chart-block">
+      <div class="chart-label">Finding 2</div>
+      <div class="canvas-wrap"><canvas id="chart-by-band"></canvas></div>
+      <div class="chart-caption">
+        <div>
+          <h3>Faster Finishers Pace More Evenly — By a Wide Margin</h3>
+        </div>
+        <div class="chart-caption-text">
+          <p>
+            Sub-3:00 runners show split ratios near 1.02–1.03. Runners finishing in
+            5:00–6:00 hours regularly exceed 1.18–1.20. The gap is large and
+            consistent across all 11 years of data.
+          </p>
+          <p>
+            <strong>Caution:</strong> This is an association. Faster runners have greater
+            aerobic capacity — the data cannot say whether even pacing causes faster finishing
+            or simply reflects underlying fitness.
+          </p>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin-top:0.5rem;">
+            Hover any bar to see median, IQR, and runner count. Toggle Men / Women above to compare pacing by gender.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finding 3 — two linked interactive charts -->
+    <div class="chart-block">
+      <div class="chart-label">Finding 3 · Strongest Predictor</div>
+
+      <div class="canvas-wrap" style="margin-bottom:1rem;">
+        <canvas id="chart-predictor-scatter"></canvas>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="chart-predictor-bars"></canvas>
+      </div>
+
+      <div class="chart-caption">
+        <div>
+          <h3>Going Out Too Fast — Relative to Your Peers — Predicts a Worse Second Half</h3>
+        </div>
+        <div class="chart-caption-text">
+          <p>
+            Raw first-half pace is a weak predictor (r = 0.21). But controlling for ability —
+            expressing each runner's pace as a ratio to their finish-band median — the
+            correlation strengthens dramatically to r = −0.58.
+          </p>
+          <p>
+            Going out 10% faster than your peer group is associated with ~11 extra percentage
+            points of second-half slowdown. <strong>This is the project's strongest
+            quantitative finding.</strong>
+          </p>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin-top:0.5rem;">
+            Hover bars to highlight the corresponding zone on the regression chart above.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:3rem;">
+      <a href="findings.html" class="cta-link">View all 10 charts &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Methodology -->
+<section id="methodology">
+  <div class="container">
+    <div class="section-label">Methodology</div>
+    <h2>How This Was Done</h2>
+    <p style="font-size:0.95rem; color:var(--text-muted); max-width:620px;">
+      Data sources, processing decisions, and assumptions. Understanding the methodology
+      is essential for interpreting the findings correctly.
+    </p>
+
+    <div class="method-grid">
+      <div class="method-card">
+        <h3>Data Source</h3>
+        <p>Results scraped from the official TCS London Marathon results platform (results.tcslondonmarathon.com), powered by mika:timing GmbH. Split times collected from individual runner detail pages.</p>
+      </div>
+      <div class="method-card">
+        <h3>What Is Included</h3>
+        <p>Mass event finishers with a recorded finish time. Elite runners are excluded from mass charts. Virtual runners (different courses) are excluded entirely.</p>
+      </div>
+      <div class="method-card">
+        <h3>Pacing Metrics</h3>
+        <p><strong>Split ratio</strong> = second-half time ÷ first-half time. Values above 1.0 indicate a positive split. Half time is cumulative elapsed time at the halfway mat (~21.1km).</p>
+      </div>
+      <div class="method-card">
+        <h3>Statistical Choices</h3>
+        <p>Median used throughout (not mean) because finish times are right-skewed. Regression used only where it adds meaning. No clustering applied without data-driven justification.</p>
+      </div>
+    </div>
+
+    <p class="limitations-title">Known Limitations</p>
+
+    <div class="limitation">
+      <span class="limitation-icon">—</span>
+      Half-marathon split times are missing for a small fraction of runners (&lt;1%). Retained for finish-time analysis but excluded from split-ratio calculations. Missing data appears random.
+    </div>
+    <div class="limitation">
+      <span class="limitation-icon">—</span>
+      Year-on-year comparisons are confounded by field composition: weather, entry standards, charity places, and course conditions differ each year. Trends should be interpreted cautiously.
+    </div>
+    <div class="limitation">
+      <span class="limitation-icon">—</span>
+      The 2020 race was cancelled (COVID-19). A small virtual-only event ran in its place; those runners are excluded as they ran different courses under different conditions.
+    </div>
+    <div class="limitation">
+      <span class="limitation-icon">—</span>
+      Runner ID collection for 2019, 2021, and 2022 is estimated at ~75% of the full field due to a hard pagination cap (~21k results per query) on the results platform's search endpoint. This is a platform constraint, not a data processing issue.
+    </div>
+  </div>
+</section>
+
+<!-- Future work -->
+<section id="future">
+  <div class="container">
+    <div class="section-label">Future Work</div>
+    <h2>What Comes Next</h2>
+    <p class="future-intro">The analysis is in good shape. These are the remaining open questions worth pursuing.</p>
+
+    <ul class="future-list">
+      <li>
+        <span class="future-badge badge-data">Data</span>
+        <div>
+          <strong>Complete 5K split coverage for 2019, 2021, and 2022</strong>
+          Split times for these three years are based on ~75% of the field due to a platform
+          pagination cap. Closing this gap would make the segment-pace and consistency charts
+          fully representative across all 11 years.
+        </div>
+      </li>
+      <li>
+        <span class="future-badge badge-phase2">Phase 2</span>
+        <div>
+          <strong>Weather and course condition controls</strong>
+          Year-on-year comparisons are currently confounded by conditions that differ each race.
+          Incorporating weather data (temperature, wind) would allow proper normalisation and
+          make trend analysis more meaningful.
+        </div>
+      </li>
+      <li>
+        <span class="future-badge badge-model">Model</span>
+        <div>
+          <strong>Natural grouping investigation</strong>
+          The pacing predictor assumes a linear relationship between relative starting pace and
+          second-half slowdown. Testing for natural subgroups (e.g. via BIC on a Gaussian
+          mixture model) could reveal whether distinct pacing archetypes exist in the data.
+        </div>
+      </li>
+      <li>
+        <span class="future-badge badge-phase2">Phase 2</span>
+        <div>
+          <strong>Repeat-runner tracking</strong>
+          The dataset contains runners who competed in multiple years. Tracking the same
+          runner across editions would allow genuine individual improvement analysis —
+          rather than comparing different field compositions year on year.
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Fun with the Data -->
+<section id="curiosities">
+  <div class="container">
+    <div class="section-label">Curiosities</div>
+    <h2>Fun with the Data</h2>
+    <p class="curiosities-intro">A few lighter observations from the dataset — patterns that don't belong in the main analysis but are too interesting to leave out.</p>
+
+    <div class="curiosities-grid">
+
+      <div class="curiosity-card">
+        <div class="curiosity-number">1.07×</div>
+        <div class="curiosity-title">The most common fade</div>
+        <p class="curiosity-desc">More runners finish with a 1.07 split ratio than any other — 14,740 of them. If you had to pick one number that describes how London usually goes wrong, this is it: a second half exactly 7% slower than the first.</p>
+      </div>
+
+      <div class="curiosity-card">
+        <div class="curiosity-number">40–44</div>
+        <div class="curiosity-title">The best-paced age group</div>
+        <p class="curiosity-desc">Runners in their early forties pace more evenly (1.117×) than those under 40 (1.132×). Every age group above 54 fades progressively more — but the 40–44 bracket quietly outperforms the youngest runners by a measurable margin.</p>
+      </div>
+
+      <div class="curiosity-card">
+        <div class="curiosity-number" id="fun-heat-delta">+23 min</div>
+        <div class="curiosity-title">What a hot day costs</div>
+        <p class="curiosity-desc">The 2018 race ran in 23°C+ heat. The median finish time was 23 minutes above the 10-year average, and <span id="fun-heat-pct">98.6%</span> of runners posted a positive split — the highest rate in the dataset by a wide margin.</p>
+      </div>
+
+      <div class="curiosity-card">
+        <div class="curiosity-title">Where men and women diverge most</div>
+        <p class="curiosity-desc">The gender pacing gap is small among fast finishers and peaks in the 4:30–5:00 band, where men fade 8.6 percentage points more than women on average. Hover to see the gap across every band.</p>
+        <div class="curiosity-canvas-wrap">
+          <canvas id="chart-gender-gap"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p class="footer-contact">
+      <strong>Ben Jones</strong>
+      &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/ben-jones-98b57a19a/" target="_blank" rel="noopener">LinkedIn</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/benjones1996" target="_blank" rel="noopener">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:bjonesreselling@gmail.com">bjonesreselling@gmail.com</a>
+    </p>
+    <p>
+      Data sourced from the
+      <a href="https://results.tcslondonmarathon.com" target="_blank" rel="noopener">TCS London Marathon results platform</a>
+      (mika:timing GmbH) — for personal analysis use only.
+    </p>
+    <p>Built with Python · pandas · matplotlib · plain HTML / CSS / JS</p>
+  </div>
+</footer>
+
+<script type="application/json" id="insights-data">
+{"split_distribution":{"pct_positive_split":94.9,"pct_negative_split":5.1,"median_split_ratio":1.1274,"n":389122,"histogram":[{"ratio":0.85,"count":19},{"ratio":0.86,"count":37},{"ratio":0.87,"count":38},{"ratio":0.88,"count":47},{"ratio":0.89,"count":69},{"ratio":0.9,"count":98},{"ratio":0.91,"count":154},{"ratio":0.92,"count":248},{"ratio":0.93,"count":352},{"ratio":0.94,"count":625},{"ratio":0.95,"count":1008},{"ratio":0.96,"count":1714},{"ratio":0.97,"count":2965},{"ratio":0.98,"count":4800},{"ratio":0.99,"count":7600},{"ratio":1.0,"count":10502},{"ratio":1.01,"count":12293},{"ratio":1.02,"count":13258},{"ratio":1.03,"count":13856},{"ratio":1.04,"count":14332},{"ratio":1.05,"count":14532},{"ratio":1.06,"count":14671},{"ratio":1.07,"count":14740},{"ratio":1.08,"count":14387},{"ratio":1.09,"count":14455},{"ratio":1.1,"count":14098},{"ratio":1.11,"count":13825},{"ratio":1.12,"count":13291},{"ratio":1.13,"count":13115},{"ratio":1.14,"count":12786},{"ratio":1.15,"count":12232},{"ratio":1.16,"count":11892},{"ratio":1.17,"count":11217},{"ratio":1.18,"count":10623},{"ratio":1.19,"count":10134},{"ratio":1.2,"count":9545},{"ratio":1.21,"count":8847},{"ratio":1.22,"count":8367},{"ratio":1.23,"count":7500},{"ratio":1.24,"count":7171},{"ratio":1.25,"count":6636},{"ratio":1.26,"count":6064},{"ratio":1.27,"count":5468},{"ratio":1.28,"count":4882},{"ratio":1.29,"count":4585},{"ratio":1.3,"count":4063},{"ratio":1.31,"count":3564},{"ratio":1.32,"count":3244},{"ratio":1.33,"count":3012},{"ratio":1.34,"count":2654},{"ratio":1.35,"count":2438},{"ratio":1.36,"count":2188},{"ratio":1.37,"count":1951},{"ratio":1.38,"count":1703},{"ratio":1.39,"count":1505},{"ratio":1.4,"count":1412},{"ratio":1.41,"count":1249},{"ratio":1.42,"count":1179},{"ratio":1.43,"count":978},{"ratio":1.44,"count":813},{"ratio":1.45,"count":803},{"ratio":1.46,"count":703},{"ratio":1.47,"count":672},{"ratio":1.48,"count":545},{"ratio":1.49,"count":506},{"ratio":1.5,"count":442},{"ratio":1.51,"count":432},{"ratio":1.52,"count":363},{"ratio":1.53,"count":293},{"ratio":1.54,"count":283},{"ratio":1.55,"count":261},{"ratio":1.56,"count":239},{"ratio":1.57,"count":208},{"ratio":1.58,"count":205},{"ratio":1.59,"count":168},{"ratio":1.6,"count":168},{"ratio":1.61,"count":110},{"ratio":1.62,"count":140},{"ratio":1.63,"count":120},{"ratio":1.64,"count":112},{"ratio":1.65,"count":104},{"ratio":1.66,"count":93},{"ratio":1.67,"count":72},{"ratio":1.68,"count":88},{"ratio":1.69,"count":73},{"ratio":1.7,"count":62},{"ratio":1.71,"count":56},{"ratio":1.72,"count":56},{"ratio":1.73,"count":46},{"ratio":1.74,"count":31},{"ratio":1.75,"count":42},{"ratio":1.76,"count":45},{"ratio":1.77,"count":38},{"ratio":1.78,"count":33},{"ratio":1.79,"count":29},{"ratio":1.8,"count":30}]},"split_by_band":{"split_ratio_fastest_band":1.0273,"split_ratio_slowest_band":1.197,"by_band":[{"band":"Sub-2:30","median":1.0273,"q25":1.0102,"q75":1.0499,"count":736},{"band":"2:30\u20133:00","median":1.0334,"q25":1.0099,"q75":1.0681,"count":18701},{"band":"3:00\u20133:30","median":1.0605,"q25":1.023,"q75":1.1117,"count":41297},{"band":"3:30\u20134:00","median":1.0744,"q25":1.031,"q75":1.135,"count":71201},{"band":"4:00\u20134:30","median":1.1206,"q25":1.064,"q75":1.1927,"count":71554},{"band":"4:30\u20135:00","median":1.1574,"q25":1.0912,"q75":1.2403,"count":69539},{"band":"5:00\u20136:00","median":1.1965,"q25":1.1324,"q75":1.2747,"count":82035},{"band":"6:00+","median":1.197,"q25":1.1324,"q75":1.2791,"count":34387}]},"segment_paces":{"worst_slowdown_segment":"30\u201335K","worst_slowdown_sec_per_km":26.2},"pace_vs_slowdown":{"regression_slope":0.0342,"regression_r":0.214,"interpretation":"For each 10 sec/km slower first-half pace, the typical runner's second-half slowdown increases by 0.34 percentage points."},"yearly_trends":{"years_covered":[2014,2015,2016,2017,2018,2019,2021,2022,2023,2024,2025],"total_finishers_analysed":390466,"median_finish_sec":16003,"by_year":[{"year":2014,"median_finish_sec":15942,"pct_positive":95.7,"finishers":35880},{"year":2015,"median_finish_sec":15542,"pct_positive":92.0,"finishers":37597},{"year":2016,"median_finish_sec":15641,"pct_positive":92.4,"finishers":38939},{"year":2017,"median_finish_sec":15995,"pct_positive":95.2,"finishers":39282},{"year":2018,"median_finish_sec":17262,"pct_positive":98.6,"finishers":40096},{"year":2019,"median_finish_sec":15881,"pct_positive":95.0,"finishers":42561},{"year":2021,"median_finish_sec":15855,"pct_positive":95.5,"finishers":35889},{"year":2022,"median_finish_sec":16220,"pct_positive":95.2,"finishers":40618},{"year":2023,"median_finish_sec":15625,"pct_positive":92.0,"finishers":24354},{"year":2024,"median_finish_sec":15556,"pct_positive":91.5,"finishers":26919},{"year":2025,"median_finish_sec":16444,"pct_positive":95.9,"finishers":28331}]},"pacing_consistency":{"pacing_cv_r":0.941},"pacing_predictor":{"regression_r":-0.585,"regression_slope":-110.0971,"predicted_slowdown_even":14.73,"extra_slowdown_per_10pct_fast":-11.01,"interpretation":"Running 10% faster than your ability-group median in the first half is associated with 11.0 extra percentage points of second-half slowdown (r=-0.58)."},"age_by_band":{"age_band_heatmap_produced":true},"gender_pacing":{"median_split_ratio_men":1.1363,"median_split_ratio_women":1.1181,"n_men":232315,"n_women":157135,"by_band":[{"band":"Sub-2:30","men":1.0273,"n_men":736,"women":null,"n_women":0},{"band":"2:30\u20133:00","men":1.0338,"n_men":17680,"women":1.0289,"n_women":1021},{"band":"3:00\u20133:30","men":1.0669,"n_men":32566,"women":1.042,"n_women":8731},{"band":"3:30\u20134:00","men":1.0853,"n_men":48299,"women":1.0575,"n_women":22902},{"band":"4:00\u20134:30","men":1.1459,"n_men":44465,"women":1.0889,"n_women":27089},{"band":"4:30\u20135:00","men":1.2029,"n_men":38374,"women":1.1171,"n_women":31165},{"band":"5:00\u20136:00","men":1.2432,"n_men":38037,"women":1.1649,"n_women":43998},{"band":"6:00+","men":1.2416,"n_men":12158,"women":1.1767,"n_women":22229}]},"age_pacing":{"median_split_ratio_18_39":1.1318,"median_split_ratio_70plus":1.1579,"by_age":[{"age":"18-39","median":1.1318,"q25":1.0598,"q75":1.2211,"count":194832},{"age":"40-44","median":1.117,"q25":1.0523,"q75":1.2004,"count":64958},{"age":"45-49","median":1.1193,"q25":1.0557,"q75":1.2012,"count":53610},{"age":"50-54","median":1.1249,"q25":1.0607,"q75":1.2053,"count":38700},{"age":"55-59","median":1.1343,"q25":1.0693,"q75":1.2125,"count":20199},{"age":"60-64","median":1.138,"q25":1.0723,"q75":1.2169,"count":10330},{"age":"65-69","median":1.1367,"q25":1.0726,"q75":1.2184,"count":4277},{"age":"70+","median":1.1579,"q25":1.0905,"q75":1.2343,"count":2435}]},"gender_breakdown":{"men":{"n":232813,"pct_positive_split":94.5,"median_finish_sec":15111,"median_split_ratio":1.1361,"histogram":[{"ratio":0.85,"count":10},{"ratio":0.86,"count":24},{"ratio":0.87,"count":27},{"ratio":0.88,"count":29},{"ratio":0.89,"count":43},{"ratio":0.9,"count":56},{"ratio":0.91,"count":99},{"ratio":0.92,"count":146},{"ratio":0.93,"count":229},{"ratio":0.94,"count":388},{"ratio":0.95,"count":579},{"ratio":0.96,"count":1016},{"ratio":0.97,"count":1818},{"ratio":0.98,"count":2997},{"ratio":0.99,"count":4752},{"ratio":1.0,"count":6574},{"ratio":1.01,"count":7525},{"ratio":1.02,"count":7956},{"ratio":1.03,"count":8181},{"ratio":1.04,"count":8359},{"ratio":1.05,"count":8136},{"ratio":1.06,"count":8133},{"ratio":1.07,"count":8033},{"ratio":1.08,"count":7603},{"ratio":1.09,"count":7612},{"ratio":1.1,"count":7370},{"ratio":1.11,"count":7231},{"ratio":1.12,"count":6849},{"ratio":1.13,"count":6792},{"ratio":1.14,"count":6647},{"ratio":1.15,"count":6398},{"ratio":1.16,"count":6364},{"ratio":1.17,"count":6112},{"ratio":1.18,"count":5953},{"ratio":1.19,"count":5743},{"ratio":1.2,"count":5630},{"ratio":1.21,"count":5369},{"ratio":1.22,"count":5142},{"ratio":1.23,"count":4737},{"ratio":1.24,"count":4709},{"ratio":1.25,"count":4430},{"ratio":1.26,"count":4129},{"ratio":1.27,"count":3810},{"ratio":1.28,"count":3435},{"ratio":1.29,"count":3349},{"ratio":1.3,"count":2970},{"ratio":1.31,"count":2656},{"ratio":1.32,"count":2461},{"ratio":1.33,"count":2319},{"ratio":1.34,"count":2050},{"ratio":1.35,"count":1862},{"ratio":1.36,"count":1718},{"ratio":1.37,"count":1535},{"ratio":1.38,"count":1334},{"ratio":1.39,"count":1196},{"ratio":1.4,"count":1156},{"ratio":1.41,"count":1035},{"ratio":1.42,"count":943},{"ratio":1.43,"count":808},{"ratio":1.44,"count":691},{"ratio":1.45,"count":696},{"ratio":1.46,"count":583},{"ratio":1.47,"count":555},{"ratio":1.48,"count":465},{"ratio":1.49,"count":430},{"ratio":1.5,"count":373},{"ratio":1.51,"count":366},{"ratio":1.52,"count":301},{"ratio":1.53,"count":251},{"ratio":1.54,"count":236},{"ratio":1.55,"count":220},{"ratio":1.56,"count":211},{"ratio":1.57,"count":176},{"ratio":1.58,"count":173},{"ratio":1.59,"count":134},{"ratio":1.6,"count":143},{"ratio":1.61,"count":92},{"ratio":1.62,"count":123},{"ratio":1.63,"count":104},{"ratio":1.64,"count":97},{"ratio":1.65,"count":88},{"ratio":1.66,"count":78},{"ratio":1.67,"count":62},{"ratio":1.68,"count":71},{"ratio":1.69,"count":64},{"ratio":1.7,"count":48},{"ratio":1.71,"count":51},{"ratio":1.72,"count":50},{"ratio":1.73,"count":38},{"ratio":1.74,"count":22},{"ratio":1.75,"count":33},{"ratio":1.76,"count":37},{"ratio":1.77,"count":32},{"ratio":1.78,"count":32},{"ratio":1.79,"count":24},{"ratio":1.8,"count":27}],"by_band":[{"band":"Sub-2:30","median":1.0273,"q25":1.0102,"q75":1.0499,"count":736},{"band":"2:30\u20133:00","median":1.0338,"q25":1.0101,"q75":1.0689,"count":17680},{"band":"3:00\u20133:30","median":1.0669,"q25":1.0264,"q75":1.1216,"count":32566},{"band":"3:30\u20134:00","median":1.0853,"q25":1.0366,"q75":1.1548,"count":48299},{"band":"4:00\u20134:30","median":1.1459,"q25":1.0813,"q75":1.2225,"count":44465},{"band":"4:30\u20135:00","median":1.2029,"q25":1.126,"q75":1.2875,"count":38374},{"band":"5:00\u20136:00","median":1.2432,"q25":1.1715,"q75":1.327,"count":38037},{"band":"6:00+","median":1.2416,"q25":1.1657,"q75":1.3404,"count":12158}]},"women":{"n":157653,"pct_positive_split":94.8,"median_finish_sec":17317,"median_split_ratio":1.1181,"histogram":[{"ratio":0.85,"count":9},{"ratio":0.86,"count":13},{"ratio":0.87,"count":11},{"ratio":0.88,"count":18},{"ratio":0.89,"count":26},{"ratio":0.9,"count":42},{"ratio":0.91,"count":55},{"ratio":0.92,"count":102},{"ratio":0.93,"count":123},{"ratio":0.94,"count":237},{"ratio":0.95,"count":429},{"ratio":0.96,"count":698},{"ratio":0.97,"count":1147},{"ratio":0.98,"count":1803},{"ratio":0.99,"count":2848},{"ratio":1.0,"count":3928},{"ratio":1.01,"count":4768},{"ratio":1.02,"count":5302},{"ratio":1.03,"count":5675},{"ratio":1.04,"count":5973},{"ratio":1.05,"count":6396},{"ratio":1.06,"count":6538},{"ratio":1.07,"count":6707},{"ratio":1.08,"count":6784},{"ratio":1.09,"count":6843},{"ratio":1.1,"count":6728},{"ratio":1.11,"count":6594},{"ratio":1.12,"count":6442},{"ratio":1.13,"count":6323},{"ratio":1.14,"count":6139},{"ratio":1.15,"count":5834},{"ratio":1.16,"count":5528},{"ratio":1.17,"count":5105},{"ratio":1.18,"count":4670},{"ratio":1.19,"count":4391},{"ratio":1.2,"count":3915},{"ratio":1.21,"count":3478},{"ratio":1.22,"count":3225},{"ratio":1.23,"count":2763},{"ratio":1.24,"count":2462},{"ratio":1.25,"count":2206},{"ratio":1.26,"count":1935},{"ratio":1.27,"count":1658},{"ratio":1.28,"count":1447},{"ratio":1.29,"count":1236},{"ratio":1.3,"count":1093},{"ratio":1.31,"count":908},{"ratio":1.32,"count":783},{"ratio":1.33,"count":693},{"ratio":1.34,"count":604},{"ratio":1.35,"count":576},{"ratio":1.36,"count":470},{"ratio":1.37,"count":416},{"ratio":1.38,"count":369},{"ratio":1.39,"count":309},{"ratio":1.4,"count":256},{"ratio":1.41,"count":214},{"ratio":1.42,"count":236},{"ratio":1.43,"count":170},{"ratio":1.44,"count":122},{"ratio":1.45,"count":107},{"ratio":1.46,"count":120},{"ratio":1.47,"count":117},{"ratio":1.48,"count":80},{"ratio":1.49,"count":76},{"ratio":1.5,"count":69},{"ratio":1.51,"count":66},{"ratio":1.52,"count":62},{"ratio":1.53,"count":42},{"ratio":1.54,"count":47},{"ratio":1.55,"count":41},{"ratio":1.56,"count":28},{"ratio":1.57,"count":32},{"ratio":1.58,"count":32},{"ratio":1.59,"count":34},{"ratio":1.6,"count":25},{"ratio":1.61,"count":18},{"ratio":1.62,"count":17},{"ratio":1.63,"count":16},{"ratio":1.64,"count":15},{"ratio":1.65,"count":16},{"ratio":1.66,"count":15},{"ratio":1.67,"count":10},{"ratio":1.68,"count":17},{"ratio":1.69,"count":9},{"ratio":1.7,"count":14},{"ratio":1.71,"count":5},{"ratio":1.72,"count":6},{"ratio":1.73,"count":8},{"ratio":1.74,"count":9},{"ratio":1.75,"count":9},{"ratio":1.76,"count":8},{"ratio":1.77,"count":6},{"ratio":1.78,"count":1},{"ratio":1.79,"count":5},{"ratio":1.8,"count":3}],"by_band":[{"band":"2:30\u20133:00","median":1.0289,"q25":1.0069,"q75":1.0583,"count":1021},{"band":"3:00\u20133:30","median":1.042,"q25":1.0139,"q75":1.0796,"count":8731},{"band":"3:30\u20134:00","median":1.0575,"q25":1.0233,"q75":1.1006,"count":22902},{"band":"4:00\u20134:30","median":1.0889,"q25":1.0458,"q75":1.1417,"count":27089},{"band":"4:30\u20135:00","median":1.1171,"q25":1.0671,"q75":1.1749,"count":31165},{"band":"5:00\u20136:00","median":1.1649,"q25":1.1108,"q75":1.2258,"count":43998},{"band":"6:00+","median":1.1767,"q25":1.1207,"q75":1.2476,"count":22229}]}}}
+</script>
+<script src="charts.js"></script>
+<script src="script.js"></script>
+<script src="reveal.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>
