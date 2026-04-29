@@ -416,7 +416,7 @@
                 var b = byBand[item.dataIndex];
                 if (item.datasetIndex === 0)
                   return "Men:    " + b.men.toFixed(4) + "\u00d7  (n=" + b.n_men.toLocaleString("en-GB") + ")";
-                return "Women: " + b.women.toFixed(4) + "\u00d7  (n=" + b.n_women.toLocaleString("en-GB") + ")";
+                return "Women: " + (b.women != null ? b.women.toFixed(4) + "\u00d7" : "no data") + "  (n=" + b.n_women.toLocaleString("en-GB") + ")";
               },
             },
           }),

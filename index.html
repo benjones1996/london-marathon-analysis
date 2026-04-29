@@ -45,11 +45,11 @@
   <div class="container">
     <div class="hero-eyebrow">
       <span class="hero-eyebrow-dot"></span>
-      Data Analysis &nbsp;·&nbsp; London Marathon &nbsp;·&nbsp; 390,000 Finishers
+      Data Analysis &nbsp;·&nbsp; London Marathon &nbsp;·&nbsp; 530,000 Finishers
     </div>
     <h1>Starting 10% Too Fast<br>Costs the Typical Runner<br>11 Minutes. Proven.</h1>
     <p class="hero-subtitle">
-      11 years. 390,000 finishers. One result stands out: how fast you start
+      12 years. 530,000 finishers. One result stands out: how fast you start
       <em>relative to your ability group</em> predicts your second-half collapse
       far more reliably than your raw pace. Here is the evidence.
     </p>
@@ -61,7 +61,7 @@
 
     <div class="hero-stats">
       <div class="hero-stat-item">
-        <span class="hero-stat-value" id="stat-runners">390k</span>
+        <span class="hero-stat-value" id="stat-runners">530k</span>
         <span class="hero-stat-label" id="stat-runners-lbl">Finishers analysed</span>
       </div>
       <div class="hero-stat-item">
@@ -86,21 +86,21 @@
     <div class="section-label">Background</div>
     <h2>What This Is</h2>
     <p>
-      390,000 finishers. 11 race years. One key question: does it matter <em>how</em> you pace the
+      530,000 finishers. 12 race years. One key question: does it matter <em>how</em> you pace the
       first half — not just <em>how fast?</em>
     </p>
     <p>
       The short answer is yes — and the effect is larger than most runners expect. Runners who start
-      10% faster than their ability-group peers lose an average of <strong>11 extra minutes</strong>
-      in the second half, compared to those who start evenly. That finding holds across every finish
-      band from sub-3:00 to 6:00+.
+      10% faster than their ability-group peers lose an average of <strong>12 extra minutes</strong>
+      in the second half, compared to those who start evenly — and more for slower runners: the cost
+      ranges from ~8 minutes for sub-3:00 runners to over 17 minutes for 6:00+ finishers.
     </p>
     <p>
       Built with Python and pandas for data engineering (scraping, cleaning, feature engineering),
       statistical regression in NumPy, and Chart.js for interactive visualisation.
       The key methodological choice: normalising each runner's first-half pace
       <em>relative to their finish-time peers</em> rather than using raw pace — this within-group
-      approach is what unlocks the r&nbsp;=&nbsp;−0.59 signal and makes the predictor
+      approach is what unlocks the r&nbsp;=&nbsp;−0.58 signal and makes the predictor
       meaningful across all ability levels.
     </p>
   </div>
@@ -111,13 +111,13 @@
   <div class="container">
     <div class="section-label">Key Findings</div>
     <h2>What the Data Shows</h2>
-    <p class="findings-intro">Six robust findings from 390,000 finishers (n&nbsp;=&nbsp;389,122 with complete split data) across 11 race years.</p>
+    <p class="findings-intro">Six robust findings from 530,000 finishers (n&nbsp;=&nbsp;528,206 with complete split data) across 12 race years.</p>
     <div class="findings-grid">
 
       <div class="finding-card">
         <div class="finding-number" id="find-positive">~95%</div>
         <div class="finding-title">Run a positive split</div>
-        <p class="finding-desc">The vast majority slow in the second half. Negative splits are genuinely rare — achieved by fewer than 6% of finishers.</p>
+        <p class="finding-desc">The vast majority slow in the second half. Negative splits are genuinely rare — achieved by fewer than 5.5% of finishers.</p>
       </div>
 
       <div class="finding-card">
@@ -135,7 +135,7 @@
       <div class="finding-card">
         <div class="finding-number" id="find-band-diff">—</div>
         <div class="finding-title">Split ratio gap: fast vs slow</div>
-        <p class="finding-desc">The pacing gap between the fastest and slowest finish bands is large and consistent across all 11 years.</p>
+        <p class="finding-desc">The pacing gap between the fastest and slowest finish bands is large and consistent across all 12 years.</p>
       </div>
 
       <div class="finding-card">
@@ -145,9 +145,15 @@
       </div>
 
       <div class="finding-card">
-        <div class="finding-number">11 min</div>
+        <div class="finding-number">~12 min</div>
         <div class="finding-title">Cost of starting 10% too fast</div>
-        <p class="finding-desc">Going out 10% faster than your ability group costs ~11 extra minutes in the second half. Raw pace is a weak predictor (r = 0.21) — relative pace is not (r = −0.59).</p>
+        <p class="finding-desc">Going out 10% faster than your ability group costs ~12 extra minutes in the second half for the median runner (more for slower finishers). Raw pace is a weak predictor (r = 0.21) — relative pace is not (r = −0.58).</p>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-number">−6%</div>
+        <div class="finding-title">The field has gotten faster</div>
+        <p class="finding-desc">A 4:00 finish beat 67% of the field in 2014. By 2024 it beat only 61% — the same time now places you 6 percentage points further back. The top-25% cutoff has dropped ~8 minutes since 2014.</p>
       </div>
 
     </div>
@@ -184,7 +190,7 @@
     <div class="section-label">Race Strategy Tool</div>
     <h2>Race Strategy Calculator</h2>
     <p class="calc-intro">
-      Based on the regression model (r = −0.59), this shows what the data observed for runners
+      Based on the regression model (r = −0.58), this shows what the data observed for runners
       who started at different paces relative to their ability group.
       Set your target time, adjust the slider, and see the predicted outcome.
     </p>
@@ -236,7 +242,7 @@
     </div>
 
     <p class="calc-footnote">
-      Based on linear regression across 390,000 finishers (r = −0.59, slope = −110 pp per unit relative pace).
+      Based on linear regression across 530,000 finishers (r = −0.58, slope = −107 pp per unit relative pace).
       Predictions are population averages — individual results vary with fitness, conditions, and nutrition.
       "Ability group" means runners who finished in the same time band as your target.
     </p>
@@ -292,7 +298,7 @@
           <p>
             Sub-3:00 runners show split ratios near 1.02–1.03. Runners finishing in
             5:00–6:00 hours regularly exceed 1.18–1.20. The gap is large and
-            consistent across all 11 years of data.
+            consistent across all 12 years of data.
           </p>
           <p>
             <strong>Caution:</strong> This is an association. Faster runners have greater
@@ -329,8 +335,9 @@
           </p>
           <p>
             Going out 10% faster than your peer group is associated with ~11 extra percentage
-            points of second-half slowdown. <strong>This is the project's strongest
-            quantitative finding.</strong> This is a correlation — the data cannot prove
+            points of second-half slowdown — equivalent to ~8 minutes for sub-3:00 runners,
+            ~12 minutes for the median finisher, and over 17 minutes for 6:00+ runners.
+            <strong>This is the project's strongest quantitative finding.</strong> This is a correlation — the data cannot prove
             that a slower start would have produced a better finish for those specific runners.
           </p>
           <p style="font-size:0.78rem; color:var(--text-muted); margin-top:0.5rem;">
@@ -411,7 +418,7 @@
           <strong>Complete 5K split coverage for 2019, 2021, and 2022</strong>
           Split times for these three years are based on ~75% of the field due to a platform
           pagination cap. Closing this gap would make the segment-pace and consistency charts
-          fully representative across all 11 years.
+          fully representative across all 12 years.
         </div>
       </li>
       <li>
@@ -484,6 +491,32 @@
   </div>
 </section>
 
+<!-- Find Your Result teaser -->
+<section id="find-your-result" class="fyr-section">
+  <div class="container">
+    <div class="section-label">Find Your Result</div>
+    <h2>Did You Run London?</h2>
+    <p class="fyr-intro">
+      Search for your name to see your result in the dataset — finish time, halfway split, and how your pacing compared with similar runners. Full analysis on the Names page.
+    </p>
+
+    <div class="fyr-form">
+      <input
+        type="text"
+        id="fyr-input"
+        class="fyr-input"
+        placeholder="e.g. Sam Jones"
+        autocomplete="off"
+        spellcheck="false"
+        maxlength="80"
+      />
+      <button id="fyr-btn" class="fyr-btn">Search</button>
+    </div>
+    <div id="fyr-msg" class="fyr-msg"></div>
+    <div id="fyr-results" class="fyr-results" hidden></div>
+  </div>
+</section>
+
 <!-- Footer -->
 <footer>
   <div class="container">
@@ -494,7 +527,7 @@
       &nbsp;·&nbsp;
       <a href="https://github.com/benjones1996" target="_blank" rel="noopener">GitHub</a>
       &nbsp;·&nbsp;
-      <a href="mailto:bjonesreselling@gmail.com">bjonesreselling@gmail.com</a>
+      <a href="mailto:benjonesnewport@gmail.com">benjonesnewport@gmail.com</a>
     </p>
     <p>
       Data sourced from the
@@ -506,11 +539,173 @@
 </footer>
 
 <script type="application/json" id="insights-data">
-{"split_distribution":{"pct_positive_split":94.9,"pct_negative_split":5.1,"median_split_ratio":1.1274,"n":389122,"histogram":[{"ratio":0.85,"count":19},{"ratio":0.86,"count":37},{"ratio":0.87,"count":38},{"ratio":0.88,"count":47},{"ratio":0.89,"count":69},{"ratio":0.9,"count":98},{"ratio":0.91,"count":154},{"ratio":0.92,"count":248},{"ratio":0.93,"count":352},{"ratio":0.94,"count":625},{"ratio":0.95,"count":1008},{"ratio":0.96,"count":1714},{"ratio":0.97,"count":2965},{"ratio":0.98,"count":4800},{"ratio":0.99,"count":7600},{"ratio":1.0,"count":10502},{"ratio":1.01,"count":12293},{"ratio":1.02,"count":13258},{"ratio":1.03,"count":13856},{"ratio":1.04,"count":14332},{"ratio":1.05,"count":14532},{"ratio":1.06,"count":14671},{"ratio":1.07,"count":14740},{"ratio":1.08,"count":14387},{"ratio":1.09,"count":14455},{"ratio":1.1,"count":14098},{"ratio":1.11,"count":13825},{"ratio":1.12,"count":13291},{"ratio":1.13,"count":13115},{"ratio":1.14,"count":12786},{"ratio":1.15,"count":12232},{"ratio":1.16,"count":11892},{"ratio":1.17,"count":11217},{"ratio":1.18,"count":10623},{"ratio":1.19,"count":10134},{"ratio":1.2,"count":9545},{"ratio":1.21,"count":8847},{"ratio":1.22,"count":8367},{"ratio":1.23,"count":7500},{"ratio":1.24,"count":7171},{"ratio":1.25,"count":6636},{"ratio":1.26,"count":6064},{"ratio":1.27,"count":5468},{"ratio":1.28,"count":4882},{"ratio":1.29,"count":4585},{"ratio":1.3,"count":4063},{"ratio":1.31,"count":3564},{"ratio":1.32,"count":3244},{"ratio":1.33,"count":3012},{"ratio":1.34,"count":2654},{"ratio":1.35,"count":2438},{"ratio":1.36,"count":2188},{"ratio":1.37,"count":1951},{"ratio":1.38,"count":1703},{"ratio":1.39,"count":1505},{"ratio":1.4,"count":1412},{"ratio":1.41,"count":1249},{"ratio":1.42,"count":1179},{"ratio":1.43,"count":978},{"ratio":1.44,"count":813},{"ratio":1.45,"count":803},{"ratio":1.46,"count":703},{"ratio":1.47,"count":672},{"ratio":1.48,"count":545},{"ratio":1.49,"count":506},{"ratio":1.5,"count":442},{"ratio":1.51,"count":432},{"ratio":1.52,"count":363},{"ratio":1.53,"count":293},{"ratio":1.54,"count":283},{"ratio":1.55,"count":261},{"ratio":1.56,"count":239},{"ratio":1.57,"count":208},{"ratio":1.58,"count":205},{"ratio":1.59,"count":168},{"ratio":1.6,"count":168},{"ratio":1.61,"count":110},{"ratio":1.62,"count":140},{"ratio":1.63,"count":120},{"ratio":1.64,"count":112},{"ratio":1.65,"count":104},{"ratio":1.66,"count":93},{"ratio":1.67,"count":72},{"ratio":1.68,"count":88},{"ratio":1.69,"count":73},{"ratio":1.7,"count":62},{"ratio":1.71,"count":56},{"ratio":1.72,"count":56},{"ratio":1.73,"count":46},{"ratio":1.74,"count":31},{"ratio":1.75,"count":42},{"ratio":1.76,"count":45},{"ratio":1.77,"count":38},{"ratio":1.78,"count":33},{"ratio":1.79,"count":29},{"ratio":1.8,"count":30}]},"split_by_band":{"split_ratio_fastest_band":1.0273,"split_ratio_slowest_band":1.197,"by_band":[{"band":"Sub-2:30","median":1.0273,"q25":1.0102,"q75":1.0499,"count":736},{"band":"2:30\u20133:00","median":1.0334,"q25":1.0099,"q75":1.0681,"count":18701},{"band":"3:00\u20133:30","median":1.0605,"q25":1.023,"q75":1.1117,"count":41297},{"band":"3:30\u20134:00","median":1.0744,"q25":1.031,"q75":1.135,"count":71201},{"band":"4:00\u20134:30","median":1.1206,"q25":1.064,"q75":1.1927,"count":71554},{"band":"4:30\u20135:00","median":1.1574,"q25":1.0912,"q75":1.2403,"count":69539},{"band":"5:00\u20136:00","median":1.1965,"q25":1.1324,"q75":1.2747,"count":82035},{"band":"6:00+","median":1.197,"q25":1.1324,"q75":1.2791,"count":34387}]},"segment_paces":{"worst_slowdown_segment":"30\u201335K","worst_slowdown_sec_per_km":26.2},"pace_vs_slowdown":{"regression_slope":0.0342,"regression_r":0.214,"interpretation":"For each 10 sec/km slower first-half pace, the typical runner's second-half slowdown increases by 0.34 percentage points."},"yearly_trends":{"years_covered":[2014,2015,2016,2017,2018,2019,2021,2022,2023,2024,2025],"total_finishers_analysed":390466,"median_finish_sec":16003,"by_year":[{"year":2014,"median_finish_sec":15942,"pct_positive":95.7,"finishers":35880},{"year":2015,"median_finish_sec":15542,"pct_positive":92.0,"finishers":37597},{"year":2016,"median_finish_sec":15641,"pct_positive":92.4,"finishers":38939},{"year":2017,"median_finish_sec":15995,"pct_positive":95.2,"finishers":39282},{"year":2018,"median_finish_sec":17262,"pct_positive":98.6,"finishers":40096},{"year":2019,"median_finish_sec":15881,"pct_positive":95.0,"finishers":42561},{"year":2021,"median_finish_sec":15855,"pct_positive":95.5,"finishers":35889},{"year":2022,"median_finish_sec":16220,"pct_positive":95.2,"finishers":40618},{"year":2023,"median_finish_sec":15625,"pct_positive":92.0,"finishers":24354},{"year":2024,"median_finish_sec":15556,"pct_positive":91.5,"finishers":26919},{"year":2025,"median_finish_sec":16444,"pct_positive":95.9,"finishers":28331}]},"pacing_consistency":{"pacing_cv_r":0.941},"pacing_predictor":{"regression_r":-0.585,"regression_slope":-110.0971,"predicted_slowdown_even":14.73,"extra_slowdown_per_10pct_fast":-11.01,"interpretation":"Running 10% faster than your ability-group median in the first half is associated with 11.0 extra percentage points of second-half slowdown (r=-0.58)."},"age_by_band":{"age_band_heatmap_produced":true},"gender_pacing":{"median_split_ratio_men":1.1363,"median_split_ratio_women":1.1181,"n_men":232315,"n_women":157135,"by_band":[{"band":"Sub-2:30","men":1.0273,"n_men":736,"women":null,"n_women":0},{"band":"2:30\u20133:00","men":1.0338,"n_men":17680,"women":1.0289,"n_women":1021},{"band":"3:00\u20133:30","men":1.0669,"n_men":32566,"women":1.042,"n_women":8731},{"band":"3:30\u20134:00","men":1.0853,"n_men":48299,"women":1.0575,"n_women":22902},{"band":"4:00\u20134:30","men":1.1459,"n_men":44465,"women":1.0889,"n_women":27089},{"band":"4:30\u20135:00","men":1.2029,"n_men":38374,"women":1.1171,"n_women":31165},{"band":"5:00\u20136:00","men":1.2432,"n_men":38037,"women":1.1649,"n_women":43998},{"band":"6:00+","men":1.2416,"n_men":12158,"women":1.1767,"n_women":22229}]},"age_pacing":{"median_split_ratio_18_39":1.1318,"median_split_ratio_70plus":1.1579,"by_age":[{"age":"18-39","median":1.1318,"q25":1.0598,"q75":1.2211,"count":194832},{"age":"40-44","median":1.117,"q25":1.0523,"q75":1.2004,"count":64958},{"age":"45-49","median":1.1193,"q25":1.0557,"q75":1.2012,"count":53610},{"age":"50-54","median":1.1249,"q25":1.0607,"q75":1.2053,"count":38700},{"age":"55-59","median":1.1343,"q25":1.0693,"q75":1.2125,"count":20199},{"age":"60-64","median":1.138,"q25":1.0723,"q75":1.2169,"count":10330},{"age":"65-69","median":1.1367,"q25":1.0726,"q75":1.2184,"count":4277},{"age":"70+","median":1.1579,"q25":1.0905,"q75":1.2343,"count":2435}]},"gender_breakdown":{"men":{"n":232813,"pct_positive_split":94.5,"median_finish_sec":15111,"median_split_ratio":1.1361,"histogram":[{"ratio":0.85,"count":10},{"ratio":0.86,"count":24},{"ratio":0.87,"count":27},{"ratio":0.88,"count":29},{"ratio":0.89,"count":43},{"ratio":0.9,"count":56},{"ratio":0.91,"count":99},{"ratio":0.92,"count":146},{"ratio":0.93,"count":229},{"ratio":0.94,"count":388},{"ratio":0.95,"count":579},{"ratio":0.96,"count":1016},{"ratio":0.97,"count":1818},{"ratio":0.98,"count":2997},{"ratio":0.99,"count":4752},{"ratio":1.0,"count":6574},{"ratio":1.01,"count":7525},{"ratio":1.02,"count":7956},{"ratio":1.03,"count":8181},{"ratio":1.04,"count":8359},{"ratio":1.05,"count":8136},{"ratio":1.06,"count":8133},{"ratio":1.07,"count":8033},{"ratio":1.08,"count":7603},{"ratio":1.09,"count":7612},{"ratio":1.1,"count":7370},{"ratio":1.11,"count":7231},{"ratio":1.12,"count":6849},{"ratio":1.13,"count":6792},{"ratio":1.14,"count":6647},{"ratio":1.15,"count":6398},{"ratio":1.16,"count":6364},{"ratio":1.17,"count":6112},{"ratio":1.18,"count":5953},{"ratio":1.19,"count":5743},{"ratio":1.2,"count":5630},{"ratio":1.21,"count":5369},{"ratio":1.22,"count":5142},{"ratio":1.23,"count":4737},{"ratio":1.24,"count":4709},{"ratio":1.25,"count":4430},{"ratio":1.26,"count":4129},{"ratio":1.27,"count":3810},{"ratio":1.28,"count":3435},{"ratio":1.29,"count":3349},{"ratio":1.3,"count":2970},{"ratio":1.31,"count":2656},{"ratio":1.32,"count":2461},{"ratio":1.33,"count":2319},{"ratio":1.34,"count":2050},{"ratio":1.35,"count":1862},{"ratio":1.36,"count":1718},{"ratio":1.37,"count":1535},{"ratio":1.38,"count":1334},{"ratio":1.39,"count":1196},{"ratio":1.4,"count":1156},{"ratio":1.41,"count":1035},{"ratio":1.42,"count":943},{"ratio":1.43,"count":808},{"ratio":1.44,"count":691},{"ratio":1.45,"count":696},{"ratio":1.46,"count":583},{"ratio":1.47,"count":555},{"ratio":1.48,"count":465},{"ratio":1.49,"count":430},{"ratio":1.5,"count":373},{"ratio":1.51,"count":366},{"ratio":1.52,"count":301},{"ratio":1.53,"count":251},{"ratio":1.54,"count":236},{"ratio":1.55,"count":220},{"ratio":1.56,"count":211},{"ratio":1.57,"count":176},{"ratio":1.58,"count":173},{"ratio":1.59,"count":134},{"ratio":1.6,"count":143},{"ratio":1.61,"count":92},{"ratio":1.62,"count":123},{"ratio":1.63,"count":104},{"ratio":1.64,"count":97},{"ratio":1.65,"count":88},{"ratio":1.66,"count":78},{"ratio":1.67,"count":62},{"ratio":1.68,"count":71},{"ratio":1.69,"count":64},{"ratio":1.7,"count":48},{"ratio":1.71,"count":51},{"ratio":1.72,"count":50},{"ratio":1.73,"count":38},{"ratio":1.74,"count":22},{"ratio":1.75,"count":33},{"ratio":1.76,"count":37},{"ratio":1.77,"count":32},{"ratio":1.78,"count":32},{"ratio":1.79,"count":24},{"ratio":1.8,"count":27}],"by_band":[{"band":"Sub-2:30","median":1.0273,"q25":1.0102,"q75":1.0499,"count":736},{"band":"2:30\u20133:00","median":1.0338,"q25":1.0101,"q75":1.0689,"count":17680},{"band":"3:00\u20133:30","median":1.0669,"q25":1.0264,"q75":1.1216,"count":32566},{"band":"3:30\u20134:00","median":1.0853,"q25":1.0366,"q75":1.1548,"count":48299},{"band":"4:00\u20134:30","median":1.1459,"q25":1.0813,"q75":1.2225,"count":44465},{"band":"4:30\u20135:00","median":1.2029,"q25":1.126,"q75":1.2875,"count":38374},{"band":"5:00\u20136:00","median":1.2432,"q25":1.1715,"q75":1.327,"count":38037},{"band":"6:00+","median":1.2416,"q25":1.1657,"q75":1.3404,"count":12158}]},"women":{"n":157653,"pct_positive_split":94.8,"median_finish_sec":17317,"median_split_ratio":1.1181,"histogram":[{"ratio":0.85,"count":9},{"ratio":0.86,"count":13},{"ratio":0.87,"count":11},{"ratio":0.88,"count":18},{"ratio":0.89,"count":26},{"ratio":0.9,"count":42},{"ratio":0.91,"count":55},{"ratio":0.92,"count":102},{"ratio":0.93,"count":123},{"ratio":0.94,"count":237},{"ratio":0.95,"count":429},{"ratio":0.96,"count":698},{"ratio":0.97,"count":1147},{"ratio":0.98,"count":1803},{"ratio":0.99,"count":2848},{"ratio":1.0,"count":3928},{"ratio":1.01,"count":4768},{"ratio":1.02,"count":5302},{"ratio":1.03,"count":5675},{"ratio":1.04,"count":5973},{"ratio":1.05,"count":6396},{"ratio":1.06,"count":6538},{"ratio":1.07,"count":6707},{"ratio":1.08,"count":6784},{"ratio":1.09,"count":6843},{"ratio":1.1,"count":6728},{"ratio":1.11,"count":6594},{"ratio":1.12,"count":6442},{"ratio":1.13,"count":6323},{"ratio":1.14,"count":6139},{"ratio":1.15,"count":5834},{"ratio":1.16,"count":5528},{"ratio":1.17,"count":5105},{"ratio":1.18,"count":4670},{"ratio":1.19,"count":4391},{"ratio":1.2,"count":3915},{"ratio":1.21,"count":3478},{"ratio":1.22,"count":3225},{"ratio":1.23,"count":2763},{"ratio":1.24,"count":2462},{"ratio":1.25,"count":2206},{"ratio":1.26,"count":1935},{"ratio":1.27,"count":1658},{"ratio":1.28,"count":1447},{"ratio":1.29,"count":1236},{"ratio":1.3,"count":1093},{"ratio":1.31,"count":908},{"ratio":1.32,"count":783},{"ratio":1.33,"count":693},{"ratio":1.34,"count":604},{"ratio":1.35,"count":576},{"ratio":1.36,"count":470},{"ratio":1.37,"count":416},{"ratio":1.38,"count":369},{"ratio":1.39,"count":309},{"ratio":1.4,"count":256},{"ratio":1.41,"count":214},{"ratio":1.42,"count":236},{"ratio":1.43,"count":170},{"ratio":1.44,"count":122},{"ratio":1.45,"count":107},{"ratio":1.46,"count":120},{"ratio":1.47,"count":117},{"ratio":1.48,"count":80},{"ratio":1.49,"count":76},{"ratio":1.5,"count":69},{"ratio":1.51,"count":66},{"ratio":1.52,"count":62},{"ratio":1.53,"count":42},{"ratio":1.54,"count":47},{"ratio":1.55,"count":41},{"ratio":1.56,"count":28},{"ratio":1.57,"count":32},{"ratio":1.58,"count":32},{"ratio":1.59,"count":34},{"ratio":1.6,"count":25},{"ratio":1.61,"count":18},{"ratio":1.62,"count":17},{"ratio":1.63,"count":16},{"ratio":1.64,"count":15},{"ratio":1.65,"count":16},{"ratio":1.66,"count":15},{"ratio":1.67,"count":10},{"ratio":1.68,"count":17},{"ratio":1.69,"count":9},{"ratio":1.7,"count":14},{"ratio":1.71,"count":5},{"ratio":1.72,"count":6},{"ratio":1.73,"count":8},{"ratio":1.74,"count":9},{"ratio":1.75,"count":9},{"ratio":1.76,"count":8},{"ratio":1.77,"count":6},{"ratio":1.78,"count":1},{"ratio":1.79,"count":5},{"ratio":1.8,"count":3}],"by_band":[{"band":"2:30\u20133:00","median":1.0289,"q25":1.0069,"q75":1.0583,"count":1021},{"band":"3:00\u20133:30","median":1.042,"q25":1.0139,"q75":1.0796,"count":8731},{"band":"3:30\u20134:00","median":1.0575,"q25":1.0233,"q75":1.1006,"count":22902},{"band":"4:00\u20134:30","median":1.0889,"q25":1.0458,"q75":1.1417,"count":27089},{"band":"4:30\u20135:00","median":1.1171,"q25":1.0671,"q75":1.1749,"count":31165},{"band":"5:00\u20136:00","median":1.1649,"q25":1.1108,"q75":1.2258,"count":43998},{"band":"6:00+","median":1.1767,"q25":1.1207,"q75":1.2476,"count":22229}]}}}
+{"split_distribution": {"pct_positive_split": 94.6, "pct_negative_split": 5.4, "median_split_ratio": 1.124, "n": 527713, "histogram": [{"ratio": 0.85, "count": 26}, {"ratio": 0.86, "count": 47}, {"ratio": 0.87, "count": 52}, {"ratio": 0.88, "count": 63}, {"ratio": 0.89, "count": 106}, {"ratio": 0.9, "count": 131}, {"ratio": 0.91, "count": 211}, {"ratio": 0.92, "count": 343}, {"ratio": 0.93, "count": 490}, {"ratio": 0.94, "count": 862}, {"ratio": 0.95, "count": 1459}, {"ratio": 0.96, "count": 2460}, {"ratio": 0.97, "count": 4193}, {"ratio": 0.98, "count": 6833}, {"ratio": 0.99, "count": 11065}, {"ratio": 1.0, "count": 15083}, {"ratio": 1.01, "count": 17394}, {"ratio": 1.02, "count": 18666}, {"ratio": 1.03, "count": 19328}, {"ratio": 1.04, "count": 19818}, {"ratio": 1.05, "count": 19997}, {"ratio": 1.06, "count": 20227}, {"ratio": 1.07, "count": 20198}, {"ratio": 1.08, "count": 19664}, {"ratio": 1.09, "count": 19662}, {"ratio": 1.1, "count": 19297}, {"ratio": 1.11, "count": 18757}, {"ratio": 1.12, "count": 18207}, {"ratio": 1.13, "count": 17695}, {"ratio": 1.14, "count": 17286}, {"ratio": 1.15, "count": 16500}, {"ratio": 1.16, "count": 15833}, {"ratio": 1.17, "count": 15065}, {"ratio": 1.18, "count": 14247}, {"ratio": 1.19, "count": 13585}, {"ratio": 1.2, "count": 12709}, {"ratio": 1.21, "count": 11783}, {"ratio": 1.22, "count": 11171}, {"ratio": 1.23, "count": 9973}, {"ratio": 1.24, "count": 9342}, {"ratio": 1.25, "count": 8636}, {"ratio": 1.26, "count": 7981}, {"ratio": 1.27, "count": 7209}, {"ratio": 1.28, "count": 6448}, {"ratio": 1.29, "count": 5923}, {"ratio": 1.3, "count": 5248}, {"ratio": 1.31, "count": 4593}, {"ratio": 1.32, "count": 4197}, {"ratio": 1.33, "count": 3896}, {"ratio": 1.34, "count": 3475}, {"ratio": 1.35, "count": 3140}, {"ratio": 1.36, "count": 2799}, {"ratio": 1.37, "count": 2525}, {"ratio": 1.38, "count": 2200}, {"ratio": 1.39, "count": 1945}, {"ratio": 1.4, "count": 1839}, {"ratio": 1.41, "count": 1602}, {"ratio": 1.42, "count": 1498}, {"ratio": 1.43, "count": 1240}, {"ratio": 1.44, "count": 1066}, {"ratio": 1.45, "count": 1035}, {"ratio": 1.46, "count": 908}, {"ratio": 1.47, "count": 860}, {"ratio": 1.48, "count": 693}, {"ratio": 1.49, "count": 642}, {"ratio": 1.5, "count": 572}, {"ratio": 1.51, "count": 533}, {"ratio": 1.52, "count": 475}, {"ratio": 1.53, "count": 371}, {"ratio": 1.54, "count": 371}, {"ratio": 1.55, "count": 330}, {"ratio": 1.56, "count": 306}, {"ratio": 1.57, "count": 276}, {"ratio": 1.58, "count": 259}, {"ratio": 1.59, "count": 211}, {"ratio": 1.6, "count": 208}, {"ratio": 1.61, "count": 156}, {"ratio": 1.62, "count": 177}, {"ratio": 1.63, "count": 161}, {"ratio": 1.64, "count": 143}, {"ratio": 1.65, "count": 130}, {"ratio": 1.66, "count": 127}, {"ratio": 1.67, "count": 99}, {"ratio": 1.68, "count": 115}, {"ratio": 1.69, "count": 91}, {"ratio": 1.7, "count": 76}, {"ratio": 1.71, "count": 76}, {"ratio": 1.72, "count": 76}, {"ratio": 1.73, "count": 57}, {"ratio": 1.74, "count": 41}, {"ratio": 1.75, "count": 55}, {"ratio": 1.76, "count": 58}, {"ratio": 1.77, "count": 53}, {"ratio": 1.78, "count": 42}, {"ratio": 1.79, "count": 42}, {"ratio": 1.8, "count": 46}]}, "split_by_band": {"split_ratio_fastest_band": 1.0255, "split_ratio_slowest_band": 1.1919, "by_band": [{"band": "Sub-2:30", "median": 1.0255, "q25": 1.0085, "q75": 1.0473, "count": 1177}, {"band": "2:30–3:00", "median": 1.0322, "q25": 1.009, "q75": 1.0662, "count": 26349}, {"band": "3:00–3:30", "median": 1.0576, "q25": 1.0209, "q75": 1.1085, "count": 56689}, {"band": "3:30–4:00", "median": 1.0722, "q25": 1.0296, "q75": 1.1322, "count": 96422}, {"band": "4:00–4:30", "median": 1.1184, "q25": 1.0628, "q75": 1.1901, "count": 95325}, {"band": "4:30–5:00", "median": 1.1548, "q25": 1.0891, "q75": 1.2369, "count": 92287}, {"band": "5:00–6:00", "median": 1.1918, "q25": 1.1279, "q75": 1.2691, "count": 110728}, {"band": "6:00+", "median": 1.1919, "q25": 1.1278, "q75": 1.2747, "count": 49229}]}, "segment_paces": {"worst_slowdown_segment": "30–35K", "worst_slowdown_sec_per_km": 26.2}, "pace_vs_slowdown": {"regression_slope": 0.0336, "regression_r": 0.217, "interpretation": "For each 10 sec/km slower first-half pace, the typical runner's second-half slowdown increases by 0.34 percentage points."}, "yearly_trends": {"years_covered": [2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025, 2026], "total_finishers_analysed": 529776, "median_finish_sec": 16000, "by_year": [{"year": 2014, "median_finish_sec": 15942, "pct_positive": 95.7, "finishers": 35880}, {"year": 2015, "median_finish_sec": 15542, "pct_positive": 92.0, "finishers": 37597}, {"year": 2016, "median_finish_sec": 15641, "pct_positive": 92.4, "finishers": 38939}, {"year": 2017, "median_finish_sec": 15995, "pct_positive": 95.2, "finishers": 39282}, {"year": 2018, "median_finish_sec": 17262, "pct_positive": 98.6, "finishers": 40096}, {"year": 2019, "median_finish_sec": 15881, "pct_positive": 95.0, "finishers": 42561}, {"year": 2021, "median_finish_sec": 15855, "pct_positive": 95.5, "finishers": 35889}, {"year": 2022, "median_finish_sec": 16220, "pct_positive": 95.2, "finishers": 40618}, {"year": 2023, "median_finish_sec": 15626, "pct_positive": 92.0, "finishers": 48707}, {"year": 2024, "median_finish_sec": 15556, "pct_positive": 91.5, "finishers": 53837}, {"year": 2025, "median_finish_sec": 16444, "pct_positive": 96.1, "finishers": 56660}, {"year": 2026, "median_finish_sec": 16124, "pct_positive": 93.4, "finishers": 59710}]}, "pacing_consistency": {"pacing_cv_r": 0.941}, "pacing_predictor": {"regression_r": -0.577, "regression_slope": -107.3318, "predicted_slowdown_even": 14.43, "extra_slowdown_per_10pct_fast": -10.73, "interpretation": "Running 10% faster than your ability-group median in the first half is associated with 10.7 extra percentage points of second-half slowdown (r=-0.58)."}, "age_by_band": {"age_band_heatmap_produced": true}, "gender_pacing": {"median_split_ratio_men": 1.1329, "median_split_ratio_women": 1.1151, "n_men": 311270, "n_women": 216936, "by_band": [{"band": "Sub-2:30", "men": 1.0255, "n_men": 1177, "women": null, "n_women": 0}, {"band": "2:30–3:00", "men": 1.0326, "n_men": 24741, "women": 1.0278, "n_women": 1608}, {"band": "3:00–3:30", "men": 1.0643, "n_men": 43775, "women": 1.0403, "n_women": 12914}, {"band": "3:30–4:00", "men": 1.0829, "n_men": 64590, "women": 1.0556, "n_women": 31832}, {"band": "4:00–4:30", "men": 1.144, "n_men": 58676, "women": 1.0876, "n_women": 36649}, {"band": "4:30–5:00", "men": 1.2003, "n_men": 50407, "women": 1.1155, "n_women": 41880}, {"band": "5:00–6:00", "men": 1.2389, "n_men": 50651, "women": 1.1605, "n_women": 60077}, {"band": "6:00+", "men": 1.2362, "n_men": 17253, "women": 1.1725, "n_women": 31976}]}, "age_pacing": {"median_split_ratio_18_39": 1.1271, "median_split_ratio_70plus": 1.1541, "by_age": [{"age": "18-39", "median": 1.1271, "q25": 1.0563, "q75": 1.2154, "count": 264453}, {"age": "40-44", "median": 1.1149, "q25": 1.0508, "q75": 1.1979, "count": 85027}, {"age": "45-49", "median": 1.1174, "q25": 1.054, "q75": 1.1985, "count": 71298}, {"age": "50-54", "median": 1.1226, "q25": 1.0587, "q75": 1.203, "count": 53368}, {"age": "55-59", "median": 1.1317, "q25": 1.0668, "q75": 1.2092, "count": 29016}, {"age": "60-64", "median": 1.1335, "q25": 1.0702, "q75": 1.2128, "count": 15237}, {"age": "65-69", "median": 1.1346, "q25": 1.0716, "q75": 1.215, "count": 6231}, {"age": "70+", "median": 1.1541, "q25": 1.0882, "q75": 1.2313, "count": 3400}]}, "gender_breakdown": {"men": {"n": 312019, "pct_positive_split": 94.2, "median_finish_sec": 15078, "median_split_ratio": 1.1328, "histogram": [{"ratio": 0.85, "count": 14}, {"ratio": 0.86, "count": 29}, {"ratio": 0.87, "count": 33}, {"ratio": 0.88, "count": 37}, {"ratio": 0.89, "count": 64}, {"ratio": 0.9, "count": 72}, {"ratio": 0.91, "count": 132}, {"ratio": 0.92, "count": 194}, {"ratio": 0.93, "count": 310}, {"ratio": 0.94, "count": 515}, {"ratio": 0.95, "count": 827}, {"ratio": 0.96, "count": 1440}, {"ratio": 0.97, "count": 2516}, {"ratio": 0.98, "count": 4207}, {"ratio": 0.99, "count": 6822}, {"ratio": 1.0, "count": 9354}, {"ratio": 1.01, "count": 10495}, {"ratio": 1.02, "count": 11032}, {"ratio": 1.03, "count": 11236}, {"ratio": 1.04, "count": 11375}, {"ratio": 1.05, "count": 11061}, {"ratio": 1.06, "count": 11016}, {"ratio": 1.07, "count": 10791}, {"ratio": 1.08, "count": 10261}, {"ratio": 1.09, "count": 10185}, {"ratio": 1.1, "count": 9889}, {"ratio": 1.11, "count": 9658}, {"ratio": 1.12, "count": 9230}, {"ratio": 1.13, "count": 9045}, {"ratio": 1.14, "count": 8873}, {"ratio": 1.15, "count": 8558}, {"ratio": 1.16, "count": 8440}, {"ratio": 1.17, "count": 8162}, {"ratio": 1.18, "count": 7899}, {"ratio": 1.19, "count": 7695}, {"ratio": 1.2, "count": 7433}, {"ratio": 1.21, "count": 7139}, {"ratio": 1.22, "count": 6846}, {"ratio": 1.23, "count": 6321}, {"ratio": 1.24, "count": 6107}, {"ratio": 1.25, "count": 5738}, {"ratio": 1.26, "count": 5458}, {"ratio": 1.27, "count": 4977}, {"ratio": 1.28, "count": 4528}, {"ratio": 1.29, "count": 4322}, {"ratio": 1.3, "count": 3837}, {"ratio": 1.31, "count": 3431}, {"ratio": 1.32, "count": 3183}, {"ratio": 1.33, "count": 2980}, {"ratio": 1.34, "count": 2648}, {"ratio": 1.35, "count": 2413}, {"ratio": 1.36, "count": 2192}, {"ratio": 1.37, "count": 1990}, {"ratio": 1.38, "count": 1716}, {"ratio": 1.39, "count": 1540}, {"ratio": 1.4, "count": 1488}, {"ratio": 1.41, "count": 1310}, {"ratio": 1.42, "count": 1193}, {"ratio": 1.43, "count": 1028}, {"ratio": 1.44, "count": 909}, {"ratio": 1.45, "count": 898}, {"ratio": 1.46, "count": 763}, {"ratio": 1.47, "count": 714}, {"ratio": 1.48, "count": 579}, {"ratio": 1.49, "count": 539}, {"ratio": 1.5, "count": 479}, {"ratio": 1.51, "count": 449}, {"ratio": 1.52, "count": 383}, {"ratio": 1.53, "count": 312}, {"ratio": 1.54, "count": 311}, {"ratio": 1.55, "count": 276}, {"ratio": 1.56, "count": 269}, {"ratio": 1.57, "count": 231}, {"ratio": 1.58, "count": 219}, {"ratio": 1.59, "count": 169}, {"ratio": 1.6, "count": 174}, {"ratio": 1.61, "count": 126}, {"ratio": 1.62, "count": 150}, {"ratio": 1.63, "count": 138}, {"ratio": 1.64, "count": 121}, {"ratio": 1.65, "count": 108}, {"ratio": 1.66, "count": 105}, {"ratio": 1.67, "count": 86}, {"ratio": 1.68, "count": 96}, {"ratio": 1.69, "count": 78}, {"ratio": 1.7, "count": 57}, {"ratio": 1.71, "count": 69}, {"ratio": 1.72, "count": 69}, {"ratio": 1.73, "count": 47}, {"ratio": 1.74, "count": 29}, {"ratio": 1.75, "count": 43}, {"ratio": 1.76, "count": 48}, {"ratio": 1.77, "count": 44}, {"ratio": 1.78, "count": 38}, {"ratio": 1.79, "count": 35}, {"ratio": 1.8, "count": 39}], "by_band": [{"band": "Sub-2:30", "median": 1.0255, "q25": 1.0085, "q75": 1.0473, "count": 1177}, {"band": "2:30–3:00", "median": 1.0326, "q25": 1.0093, "q75": 1.067, "count": 24741}, {"band": "3:00–3:30", "median": 1.0643, "q25": 1.0244, "q75": 1.1192, "count": 43775}, {"band": "3:30–4:00", "median": 1.0829, "q25": 1.0352, "q75": 1.1521, "count": 64590}, {"band": "4:00–4:30", "median": 1.144, "q25": 1.0801, "q75": 1.2205, "count": 58676}, {"band": "4:30–5:00", "median": 1.2003, "q25": 1.1237, "q75": 1.2843, "count": 50407}, {"band": "5:00–6:00", "median": 1.2389, "q25": 1.1678, "q75": 1.3226, "count": 50651}, {"band": "6:00+", "median": 1.2362, "q25": 1.1604, "q75": 1.3335, "count": 17253}]}, "women": {"n": 217757, "pct_positive_split": 94.4, "median_finish_sec": 17326, "median_split_ratio": 1.1151, "histogram": [{"ratio": 0.85, "count": 12}, {"ratio": 0.86, "count": 18}, {"ratio": 0.87, "count": 19}, {"ratio": 0.88, "count": 26}, {"ratio": 0.89, "count": 42}, {"ratio": 0.9, "count": 59}, {"ratio": 0.91, "count": 79}, {"ratio": 0.92, "count": 149}, {"ratio": 0.93, "count": 180}, {"ratio": 0.94, "count": 347}, {"ratio": 0.95, "count": 632}, {"ratio": 0.96, "count": 1020}, {"ratio": 0.97, "count": 1677}, {"ratio": 0.98, "count": 2626}, {"ratio": 0.99, "count": 4243}, {"ratio": 1.0, "count": 5729}, {"ratio": 1.01, "count": 6899}, {"ratio": 1.02, "count": 7634}, {"ratio": 1.03, "count": 8092}, {"ratio": 1.04, "count": 8443}, {"ratio": 1.05, "count": 8936}, {"ratio": 1.06, "count": 9211}, {"ratio": 1.07, "count": 9407}, {"ratio": 1.08, "count": 9403}, {"ratio": 1.09, "count": 9477}, {"ratio": 1.1, "count": 9408}, {"ratio": 1.11, "count": 9099}, {"ratio": 1.12, "count": 8977}, {"ratio": 1.13, "count": 8650}, {"ratio": 1.14, "count": 8413}, {"ratio": 1.15, "count": 7942}, {"ratio": 1.16, "count": 7393}, {"ratio": 1.17, "count": 6903}, {"ratio": 1.18, "count": 6348}, {"ratio": 1.19, "count": 5890}, {"ratio": 1.2, "count": 5276}, {"ratio": 1.21, "count": 4644}, {"ratio": 1.22, "count": 4325}, {"ratio": 1.23, "count": 3652}, {"ratio": 1.24, "count": 3235}, {"ratio": 1.25, "count": 2898}, {"ratio": 1.26, "count": 2523}, {"ratio": 1.27, "count": 2232}, {"ratio": 1.28, "count": 1920}, {"ratio": 1.29, "count": 1601}, {"ratio": 1.3, "count": 1411}, {"ratio": 1.31, "count": 1162}, {"ratio": 1.32, "count": 1014}, {"ratio": 1.33, "count": 916}, {"ratio": 1.34, "count": 827}, {"ratio": 1.35, "count": 727}, {"ratio": 1.36, "count": 607}, {"ratio": 1.37, "count": 535}, {"ratio": 1.38, "count": 484}, {"ratio": 1.39, "count": 405}, {"ratio": 1.4, "count": 351}, {"ratio": 1.41, "count": 292}, {"ratio": 1.42, "count": 305}, {"ratio": 1.43, "count": 212}, {"ratio": 1.44, "count": 157}, {"ratio": 1.45, "count": 137}, {"ratio": 1.46, "count": 145}, {"ratio": 1.47, "count": 146}, {"ratio": 1.48, "count": 114}, {"ratio": 1.49, "count": 103}, {"ratio": 1.5, "count": 93}, {"ratio": 1.51, "count": 84}, {"ratio": 1.52, "count": 92}, {"ratio": 1.53, "count": 59}, {"ratio": 1.54, "count": 60}, {"ratio": 1.55, "count": 54}, {"ratio": 1.56, "count": 37}, {"ratio": 1.57, "count": 45}, {"ratio": 1.58, "count": 40}, {"ratio": 1.59, "count": 42}, {"ratio": 1.6, "count": 34}, {"ratio": 1.61, "count": 30}, {"ratio": 1.62, "count": 27}, {"ratio": 1.63, "count": 23}, {"ratio": 1.64, "count": 22}, {"ratio": 1.65, "count": 22}, {"ratio": 1.66, "count": 22}, {"ratio": 1.67, "count": 13}, {"ratio": 1.68, "count": 19}, {"ratio": 1.69, "count": 13}, {"ratio": 1.7, "count": 19}, {"ratio": 1.71, "count": 7}, {"ratio": 1.72, "count": 7}, {"ratio": 1.73, "count": 10}, {"ratio": 1.74, "count": 12}, {"ratio": 1.75, "count": 12}, {"ratio": 1.76, "count": 10}, {"ratio": 1.77, "count": 9}, {"ratio": 1.78, "count": 4}, {"ratio": 1.79, "count": 7}, {"ratio": 1.8, "count": 7}], "by_band": [{"band": "2:30–3:00", "median": 1.0278, "q25": 1.0055, "q75": 1.0551, "count": 1608}, {"band": "3:00–3:30", "median": 1.0403, "q25": 1.0123, "q75": 1.0771, "count": 12914}, {"band": "3:30–4:00", "median": 1.0556, "q25": 1.0217, "q75": 1.0984, "count": 31832}, {"band": "4:00–4:30", "median": 1.0876, "q25": 1.0444, "q75": 1.1395, "count": 36649}, {"band": "4:30–5:00", "median": 1.1155, "q25": 1.0653, "q75": 1.1729, "count": 41880}, {"band": "5:00–6:00", "median": 1.1605, "q25": 1.1068, "q75": 1.2207, "count": 60077}, {"band": "6:00+", "median": 1.1725, "q25": 1.1168, "q75": 1.2433, "count": 31976}]}}}
 </script>
 <script src="charts.js"></script>
 <script src="script.js"></script>
 <script src="reveal.js"></script>
 <script src="nav.js"></script>
+
+<script>
+(function () {
+  "use strict";
+
+  var indexCache = {};
+
+  function p2(n) { return n < 10 ? "0" + n : String(n); }
+
+  function fmtSec(s) {
+    if (s === null || s === undefined || s <= 0) return "\u2014";
+    s = Math.round(s);
+    return Math.floor(s / 3600) + ":" + p2(Math.floor((s % 3600) / 60)) + ":" + p2(s % 60);
+  }
+
+  function escHtml(s) {
+    return String(s || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function normalise(s) {
+    return String(s || "").trim().replace(/\s+/g, " ").toLowerCase();
+  }
+
+  function bucketKey(lastName) {
+    if (!lastName) return "other";
+    var ch = lastName[0].toLowerCase();
+    return /^[a-z]$/.test(ch) ? ch : "other";
+  }
+
+  function loadShard(letter, callback) {
+    if (indexCache[letter]) { callback(null, indexCache[letter]); return; }
+    var url = "name-search/" + encodeURIComponent(letter) + ".json";
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          indexCache[letter] = data.d || [];
+          callback(null, indexCache[letter]);
+        } catch (e) {
+          callback("Parse error");
+        }
+      } else if (xhr.status === 404) {
+        indexCache[letter] = [];
+        callback(null, []);
+      } else {
+        callback("Network error (" + xhr.status + ")");
+      }
+    };
+    xhr.onerror = function () { callback("Network error"); };
+    xhr.send();
+  }
+
+  function doFyrSearch() {
+    var input     = document.getElementById("fyr-input");
+    var msgEl     = document.getElementById("fyr-msg");
+    var resultsEl = document.getElementById("fyr-results");
+    if (!input || !msgEl || !resultsEl) return;
+
+    var raw    = input.value;
+    var tokens = raw.trim().replace(/\s+/g, " ").split(" ").filter(Boolean);
+    msgEl.className = "fyr-msg";
+    msgEl.textContent = "";
+    resultsEl.hidden = true;
+    resultsEl.innerHTML = "";
+
+    if (tokens.length < 2) {
+      msgEl.className = "fyr-msg fyr-msg-error";
+      msgEl.textContent = "Please enter both a first name and a surname.";
+      return;
+    }
+
+    var firstName = normalise(tokens[0]);
+    var lastName  = normalise(tokens.slice(1).join(" "));
+    var letter    = bucketKey(lastName);
+
+    msgEl.textContent = "Searching\u2026";
+
+    loadShard(letter, function (err, records) {
+      msgEl.textContent = "";
+      if (err) {
+        msgEl.className = "fyr-msg fyr-msg-error";
+        msgEl.textContent = "Could not load search data. Try the Names page directly.";
+        return;
+      }
+
+      var matches = records.filter(function (r) {
+        return normalise(r[0]) === firstName && normalise(r[1]) === lastName;
+      });
+
+      if (matches.length === 0) {
+        msgEl.textContent = "No results found for \u201c" + escHtml(tokens[0]) + " " + escHtml(tokens.slice(1).join(" ")) + "\u201d in the dataset.";
+        return;
+      }
+
+      matches.sort(function (a, b) {
+        if (b[2] !== a[2]) return (b[2] || 0) - (a[2] || 0);
+        var fa = a[3] === null ? Infinity : a[3];
+        var fb = b[3] === null ? Infinity : b[3];
+        return fa - fb;
+      });
+
+      var shown   = Math.min(matches.length, 5);
+      var encoded = encodeURIComponent(tokens[0] + " " + tokens.slice(1).join(" "));
+      var namesUrl = "names.html?q=" + encoded;
+
+      var countHtml = '<div class="fyr-count">' +
+        matches.length + ' result' + (matches.length !== 1 ? 's' : '') + ' found' +
+        (matches.length > 5 ? ' \u2014 showing top 5' : '') +
+        '</div>';
+
+      var cardsHtml = '<div class="fyr-cards">';
+      for (var i = 0; i < shown; i++) {
+        var r = matches[i];
+        var yr  = r[2] || "";
+        var ft  = r[3];
+        var ht  = r[4];
+        var sr  = r[5];
+        var nat = r[8] || "";
+        var splitStr = (sr !== null && sr !== undefined) ? sr.toFixed(3) + "\u00d7" : "\u2014";
+        cardsHtml +=
+          '<div class="fyr-card">' +
+            '<div class="fyr-card-left">' +
+              (yr ? '<div class="fyr-card-year">' + yr + '</div>' : '') +
+              (nat ? '<div class="fyr-card-nat">' + escHtml(nat) + '</div>' : '') +
+            '</div>' +
+            '<div class="fyr-card-data">' +
+              '<div class="fyr-stat"><div class="fyr-stat-val">' + fmtSec(ft) + '</div><div class="fyr-stat-lbl">Finish</div></div>' +
+              '<div class="fyr-stat"><div class="fyr-stat-val">' + fmtSec(ht) + '</div><div class="fyr-stat-lbl">Halfway</div></div>' +
+              '<div class="fyr-stat"><div class="fyr-stat-val">' + splitStr + '</div><div class="fyr-stat-lbl">Split</div></div>' +
+            '</div>' +
+            '<a class="fyr-card-link" href="' + namesUrl + '">Full analysis \u2192</a>' +
+          '</div>';
+      }
+      cardsHtml += '</div>';
+
+      var moreHtml = matches.length > 5
+        ? '<p class="fyr-more">+' + (matches.length - 5) + ' more result' + (matches.length - 5 !== 1 ? 's' : '') +
+          ' \u2014 <a href="' + namesUrl + '">see all on the Names page</a></p>'
+        : '<p class="fyr-names-link"><a href="' + namesUrl + '">See full analysis on the Names page \u2192</a></p>';
+
+      resultsEl.innerHTML = countHtml + cardsHtml + moreHtml;
+      resultsEl.hidden = false;
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var btn   = document.getElementById("fyr-btn");
+    var input = document.getElementById("fyr-input");
+    if (!btn || !input) return;
+    btn.addEventListener("click", doFyrSearch);
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") doFyrSearch();
+    });
+  });
+}());
+</script>
 </body>
 </html>

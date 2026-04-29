@@ -336,20 +336,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ─── Load data from inline <script type="application/json"> ───────────────
   // Works on file://, localhost, and GitHub Pages — no fetch needed.
-  console.log("[DEBUG] Looking for inline insights data...");
   var inlineEl = document.getElementById("insights-data");
-  if (!inlineEl) {
-    console.error("[DEBUG] #insights-data element not found");
-  } else {
-    console.log("[DEBUG] Found #insights-data, parsing...");
+  if (inlineEl) {
     try {
       insightsData = JSON.parse(inlineEl.textContent);
-      console.log("[DEBUG] Parsed OK. Keys:", Object.keys(insightsData));
-      console.log("[DEBUG] histogram length:", (insightsData.split_distribution || {}).histogram
-        ? insightsData.split_distribution.histogram.length : "MISSING");
-      console.log("[DEBUG] Calling applyGender('all')...");
       applyGender("all");
-      console.log("[DEBUG] applyGender done — charts should be visible.");
       // Finding 3 charts are all-finisher model — built once, not rebuilt on gender toggle
       if (typeof buildPredictorScatter === "function") {
         buildPredictorScatter("chart-predictor-scatter", insightsData.pacing_predictor);
@@ -380,7 +371,7 @@ document.addEventListener("DOMContentLoaded", function () {
         buildGenderGapChart("chart-gender-gap", insightsData);
       }
     } catch (e) {
-      console.error("[DEBUG] JSON.parse failed:", e);
+      console.error("Failed to parse inline insights data:", e);
     }
   }
 

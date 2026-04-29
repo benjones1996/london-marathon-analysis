@@ -37,7 +37,7 @@
     <div class="section-label">Fun with the Data</div>
     <h2 style="font-size:2rem; margin-bottom:0.5rem;">Names</h2>
     <p style="color:var(--text-muted); font-size:0.97rem; max-width:580px; margin:0;">
-      390,000 runners. 45,000 distinct first names. Some patterns are obvious in hindsight — others
+      530,000 runners. 55,000 distinct first names. Some patterns are obvious in hindsight — others
       are genuinely surprising. All of it is drawn directly from the race results.
     </p>
   </div>
@@ -152,7 +152,7 @@
           </div>
         </div>
         <p class="nc-typical-note">
-          There are 60 runners named David Smith in the dataset. Their finish times range from 2:51 to 8:11.
+          There are 74 runners named David Smith in the dataset. Their finish times range from 2:51 to 8:11.
         </p>
       </div>
     </div>
@@ -160,7 +160,7 @@
     <!-- ── 3b. A note on Ben Jones ─────────────────────────────────────── -->
     <div class="callout" style="border-left-color:var(--red); margin-bottom:2.5rem;">
       <strong style="color:var(--red);">A note on Ben Jones.</strong>
-      There are <strong style="color:var(--text-mid);">18 people named Ben Jones</strong>
+      There are <strong style="color:var(--text-mid);">26 people named Ben Jones</strong>
       in this dataset. The 2022 edition — 4:56:39, 18–39 category — recorded a split ratio of
       <strong style="color:var(--text-mid);">1.085</strong>, meaning their second half was only
       8.5% slower than their first. That puts them in the top <strong style="color:var(--text-mid);">13%
@@ -181,8 +181,8 @@
             who registered as the same name — and ran completely different races.
           </p>
           <p>
-            The largest gap in the dataset belongs to the 33 people named Sarah Jones, whose finish
-            times span from 3:08 to 9:35 — a gap of over six hours.
+            The largest gap in the dataset belongs to the 6 people named Robin Muir, whose finish
+            times span from 2:47 to 11:13 — a gap of over eight hours. Sarah Jones (35 runners, 3:08–9:35) has the most people sharing a name in the top eight.
           </p>
         </div>
       </div>
@@ -207,16 +207,93 @@
       <div class="chart-label">Names · Diversity</div>
       <div class="nc-diversity-grid">
         <div class="nc-diversity-card">
-          <div class="nc-diversity-num">45,657</div>
+          <div class="nc-diversity-num">55,782</div>
           <div class="nc-diversity-lbl">Distinct first names</div>
-          <p class="nc-diversity-desc">Across 390,000 runners — a ratio of roughly 8 runners per unique first name.</p>
+          <p class="nc-diversity-desc">Across 530,000 runners — a ratio of roughly 10 runners per unique first name.</p>
         </div>
         <div class="nc-diversity-card">
-          <div class="nc-diversity-num">31,792</div>
+          <div class="nc-diversity-num">38,757</div>
           <div class="nc-diversity-lbl">Names that appear exactly once</div>
           <p class="nc-diversity-desc">70% of all distinct first names belong to a single runner in the dataset. One each: Chinju, Youngsoon, Voula, Zhening, Tiki, Sanjana.</p>
         </div>
       </div>
+    </div>
+
+    <!-- ── 6. Find a Runner ──────────────────────────────────────────────── -->
+    <div class="nc-search-block">
+      <div class="chart-label">Names · Find a Runner</div>
+      <h3 style="margin-bottom:0.4rem;">Find a Runner</h3>
+      <p style="color:var(--text-muted); font-size:0.9rem; max-width:560px; margin-bottom:1.5rem;">
+        Search by first name and surname to see matching London Marathon results in the dataset.
+      </p>
+
+      <div class="nc-search-form">
+        <input
+          type="text"
+          id="nc-search-input"
+          class="nc-search-input"
+          placeholder="e.g. Sam Jones"
+          autocomplete="off"
+          spellcheck="false"
+          maxlength="80"
+        />
+        <button id="nc-search-btn" class="nc-search-btn">Search</button>
+      </div>
+      <div id="nc-search-msg" class="nc-search-msg"></div>
+
+      <div id="nc-search-results" class="nc-search-results" hidden>
+        <div id="nc-search-count" class="nc-search-count"></div>
+        <div class="nc-table-wrap">
+          <table class="nc-search-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Year</th>
+                <th>Finish</th>
+                <th>Half</th>
+                <th>Split</th>
+                <th class="nsr-cat">Category</th>
+                <th class="nsr-nat">Country</th>
+                <th class="nsr-analyse"></th>
+              </tr>
+            </thead>
+            <tbody id="nc-search-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 7. Analyse My Race ─────────────────────────────────────────────── -->
+    <div id="amr-panel" class="amr-panel" hidden>
+      <div class="amr-panel-head">
+        <div>
+          <div class="section-label" style="margin-bottom:0.3rem;">Analyse My Race</div>
+          <h3 style="margin:0; font-size:1.05rem; font-weight:700;">Personalised pacing analysis</h3>
+        </div>
+        <button id="amr-close-btn" class="amr-close-btn" aria-label="Close analysis panel">&#10005;</button>
+      </div>
+
+      <div id="amr-runner-card" class="amr-runner-card"></div>
+
+      <div class="amr-target-section">
+        <label class="amr-target-label" for="amr-target-input">What time were you targeting?</label>
+        <div class="amr-target-form">
+          <input
+            type="text"
+            id="amr-target-input"
+            class="amr-target-input"
+            placeholder="e.g. 4:00 &nbsp;·&nbsp; 3:45:00 &nbsp;·&nbsp; 3h30"
+            maxlength="20"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button id="amr-analyse-btn" class="amr-analyse-btn">Generate analysis</button>
+        </div>
+        <div id="amr-target-error" class="amr-target-error" hidden></div>
+        <p class="amr-target-hint">Accepts: 4:00 &nbsp;&middot;&nbsp; 4:00:00 &nbsp;&middot;&nbsp; 3h45 &nbsp;&middot;&nbsp; 3:45 marathon</p>
+      </div>
+
+      <div id="amr-output" class="amr-output" hidden></div>
     </div>
 
   </div>
@@ -232,7 +309,7 @@
       &nbsp;·&nbsp;
       <a href="https://github.com/benjones1996" target="_blank" rel="noopener">GitHub</a>
       &nbsp;·&nbsp;
-      <a href="mailto:bjonesreselling@gmail.com">bjonesreselling@gmail.com</a>
+      <a href="mailto:benjonesnewport@gmail.com">benjonesnewport@gmail.com</a>
     </p>
     <p>
       Data sourced from the
@@ -244,7 +321,7 @@
 </footer>
 
 <script type="application/json" id="nc-data">
-{"names":{"male_top10":[{"name":"David","count":5864},{"name":"James","count":5549},{"name":"Paul","count":5122},{"name":"Mark","count":4493},{"name":"Andrew","count":4430},{"name":"Richard","count":3534},{"name":"Michael","count":3497},{"name":"Chris","count":3404},{"name":"John","count":3395},{"name":"Matthew","count":3127}],"female_top10":[{"name":"Sarah","count":3435},{"name":"Emma","count":2590},{"name":"Laura","count":1994},{"name":"Claire","count":1846},{"name":"Rebecca","count":1774},{"name":"Helen","count":1668},{"name":"Rachel","count":1667},{"name":"Hannah","count":1562},{"name":"Emily","count":1405},{"name":"Charlotte","count":1396}],"surname_top10":[{"name":"Smith","count":3552},{"name":"Jones","count":2654},{"name":"Williams","count":2032},{"name":"Brown","count":1717},{"name":"Taylor","count":1669},{"name":"Davies","count":1504},{"name":"Evans","count":1246},{"name":"Wilson","count":1229},{"name":"Thomas","count":1163},{"name":"Johnson","count":1061}],"fastest10":[{"name":"Guillaume","count":69,"avg_sec":13133},{"name":"Marcin","count":59,"avg_sec":13461},{"name":"Euan","count":68,"avg_sec":13496},{"name":"Tomasz","count":56,"avg_sec":13526},{"name":"Julien","count":76,"avg_sec":13635},{"name":"Michal","count":59,"avg_sec":13650},{"name":"Diego","count":91,"avg_sec":13653},{"name":"Antoine","count":59,"avg_sec":13716},{"name":"Sebastien","count":68,"avg_sec":13776},{"name":"Nicolas","count":187,"avg_sec":13838}],"slowest10":[{"name":"Victoria Louise","count":50,"avg_sec":19150},{"name":"Aimee","count":141,"avg_sec":19117},{"name":"Jodie","count":215,"avg_sec":19039},{"name":"Maxine","count":69,"avg_sec":19000},{"name":"Kayleigh","count":98,"avg_sec":18987},{"name":"Kellie","count":56,"avg_sec":18903},{"name":"Sylvia","count":64,"avg_sec":18900},{"name":"Jacqui","count":87,"avg_sec":18870},{"name":"Stacy","count":54,"avg_sec":18867},{"name":"Maureen","count":83,"avg_sec":18813}],"same_name_range":[{"name":"Sarah Jones","count":33,"min_fmt":"3:08:14","max_fmt":"9:35:28","range_min":387},{"name":"Matthew Lloyd","count":5,"min_fmt":"3:04:11","max_fmt":"9:20:11","range_min":376},{"name":"Sarah Williams","count":19,"min_fmt":"2:50:51","max_fmt":"9:04:08","range_min":373},{"name":"Neil Casey","count":7,"min_fmt":"2:46:48","max_fmt":"8:49:13","range_min":362},{"name":"Ross Clarke","count":5,"min_fmt":"2:59:25","max_fmt":"8:58:13","range_min":359},{"name":"Sharon Williams","count":5,"min_fmt":"3:29:54","max_fmt":"9:16:26","range_min":347},{"name":"James Miller","count":12,"min_fmt":"2:33:54","max_fmt":"8:16:51","range_min":343},{"name":"Richard Whiting","count":5,"min_fmt":"3:51:29","max_fmt":"9:31:51","range_min":340}]}}
+{"names":{"male_top10":[{"name":"David","count":7526},{"name":"James","count":7491},{"name":"Paul","count":6366},{"name":"Andrew","count":5631},{"name":"Mark","count":5629},{"name":"Michael","count":4670},{"name":"Chris","count":4522},{"name":"Richard","count":4403},{"name":"Matthew","count":4278},{"name":"John","count":4274}],"female_top10":[{"name":"Sarah","count":4715},{"name":"Emma","count":3588},{"name":"Laura","count":2788},{"name":"Rebecca","count":2493},{"name":"Claire","count":2400},{"name":"Hannah","count":2244},{"name":"Rachel","count":2239},{"name":"Emily","count":2156},{"name":"Helen","count":2147},{"name":"Lucy","count":2070}],"surname_top10":[{"name":"Smith","count":4626},{"name":"Jones","count":3479},{"name":"Williams","count":2629},{"name":"Brown","count":2304},{"name":"Taylor","count":2228},{"name":"Davies","count":1950},{"name":"Evans","count":1633},{"name":"Wilson","count":1604},{"name":"Thomas","count":1509},{"name":"Johnson","count":1389}],"fastest10":[{"name":"Mathieu","count":68,"avg_sec":12904},{"name":"Magnus","count":50,"avg_sec":12913},{"name":"Santiago","count":80,"avg_sec":13007},{"name":"Paulo","count":57,"avg_sec":13429},{"name":"Guillaume","count":93,"avg_sec":13477},{"name":"Marcin","count":87,"avg_sec":13517},{"name":"Julien","count":108,"avg_sec":13553},{"name":"Jonas","count":52,"avg_sec":13566},{"name":"Tomasz","count":94,"avg_sec":13572},{"name":"Jeroen","count":50,"avg_sec":13583}],"slowest10":[{"name":"Victoria Louise","count":50,"avg_sec":19150},{"name":"Kerrie","count":60,"avg_sec":19114},{"name":"Charlene","count":66,"avg_sec":19105},{"name":"Kellie","count":80,"avg_sec":18961},{"name":"Kayleigh","count":170,"avg_sec":18956},{"name":"Kerri","count":55,"avg_sec":18932},{"name":"Jacqui","count":111,"avg_sec":18912},{"name":"Jodie","count":279,"avg_sec":18901},{"name":"Maggie","count":108,"avg_sec":18887},{"name":"Aimee","count":235,"avg_sec":18851}],"same_name_range":[{"name":"Robin Muir","count":6,"min_fmt":"2:47:06","max_fmt":"11:12:43","range_min":505},{"name":"Alex Sweet","count":5,"min_fmt":"2:54:28","max_fmt":"10:59:23","range_min":484},{"name":"David Lock","count":7,"min_fmt":"2:58:13","max_fmt":"10:02:18","range_min":424},{"name":"Rebecca Holmes","count":6,"min_fmt":"3:32:28","max_fmt":"10:36:50","range_min":424},{"name":"Olivia Jones","count":6,"min_fmt":"3:55:25","max_fmt":"10:39:09","range_min":403},{"name":"Andrew Parsons","count":5,"min_fmt":"2:58:54","max_fmt":"9:36:01","range_min":397},{"name":"Kate Knight","count":14,"min_fmt":"5:02:20","max_fmt":"11:32:44","range_min":390},{"name":"Sarah Jones","count":40,"min_fmt":"3:08:14","max_fmt":"9:35:28","range_min":387}]}}
 </script>
 <script src="names_countries.js"></script>
 <script>
@@ -277,5 +354,517 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 <script src="reveal.js"></script>
 <script src="nav.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var indexCache = {};
+
+  // ── Helpers ──────────────────────────────────────────────────────────────
+  function fmtSec(s) {
+    if (s === null || s === undefined) return "—";
+    var h = Math.floor(s / 3600);
+    var m = Math.floor((s % 3600) / 60);
+    var sec = s % 60;
+    return h + ":" + pad(m) + ":" + pad(sec);
+  }
+  function pad(n) { return n < 10 ? "0" + n : String(n); }
+
+  function fmtSplit(sr) {
+    if (sr === null || sr === undefined) return "—";
+    var pct = ((sr - 1) * 100).toFixed(1);
+    return sr.toFixed(3) + " (+" + pct + "%)";
+  }
+
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function bucketKey(lastName) {
+    if (!lastName) return "other";
+    var ch = lastName[0].toLowerCase();
+    return /^[a-z]$/.test(ch) ? ch : "other";
+  }
+
+  function normalise(s) {
+    return s.trim().replace(/\s+/g, " ").toLowerCase();
+  }
+
+  // ── Load index shard ──────────────────────────────────────────────────────
+  function loadShard(letter, callback) {
+    if (indexCache[letter]) { callback(null, indexCache[letter]); return; }
+    var url = "name-search/" + encodeURIComponent(letter) + ".json";
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url, true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          indexCache[letter] = data.d || [];
+          callback(null, indexCache[letter]);
+        } catch (e) {
+          callback("Parse error");
+        }
+      } else if (xhr.status === 404) {
+        indexCache[letter] = [];
+        callback(null, []);
+      } else {
+        callback("Network error (" + xhr.status + ")");
+      }
+    };
+    xhr.onerror = function () { callback("Network error"); };
+    xhr.send();
+  }
+
+  // ── Search ────────────────────────────────────────────────────────────────
+  function doSearch() {
+    var raw = document.getElementById("nc-search-input").value;
+    var msg = document.getElementById("nc-search-msg");
+    var resultsEl = document.getElementById("nc-search-results");
+    var countEl = document.getElementById("nc-search-count");
+    var tbody = document.getElementById("nc-search-tbody");
+
+    msg.className = "nc-search-msg";
+    msg.textContent = "";
+    resultsEl.hidden = true;
+    tbody.innerHTML = "";
+    countEl.textContent = "";
+
+    var tokens = raw.trim().replace(/\s+/g, " ").split(" ").filter(Boolean);
+    if (tokens.length < 2) {
+      msg.className = "nc-search-msg error";
+      msg.textContent = "Please enter both first name and surname.";
+      return;
+    }
+
+    var firstName = normalise(tokens[0]);
+    var lastName  = normalise(tokens.slice(1).join(" "));
+    var letter    = bucketKey(lastName);
+
+    msg.textContent = "Searching…";
+
+    loadShard(letter, function (err, records) {
+      msg.textContent = "";
+      if (err) {
+        msg.className = "nc-search-msg error";
+        msg.textContent = "Could not load search index. " + err;
+        return;
+      }
+
+      // Filter: exact match on first + last (case-insensitive)
+      var matches = records.filter(function (r) {
+        return normalise(r[0]) === firstName && normalise(r[1]) === lastName;
+      });
+
+      if (matches.length === 0) {
+        msg.textContent = "No matching runners found.";
+        return;
+      }
+
+      // Sort: year desc, then finish_sec asc (nulls last)
+      matches.sort(function (a, b) {
+        if (b[2] !== a[2]) return (b[2] || 0) - (a[2] || 0);
+        var fa = a[3] === null ? Infinity : a[3];
+        var fb = b[3] === null ? Infinity : b[3];
+        return fa - fb;
+      });
+
+      countEl.textContent = matches.length + " match" + (matches.length !== 1 ? "es" : "") + " found";
+
+      if (typeof window.amrResetPanel === "function") window.amrResetPanel();
+
+      matches.forEach(function (r) {
+        var first = r[0], last = r[1], year = r[2];
+        var ft = r[3], ht = r[4], sr = r[5];
+        var gender = r[6] || "", cat = r[7] || "", nat = r[8] || "";
+        var displayName = escHtml(first) + " " + escHtml(last);
+        var catGender = gender && cat ? escHtml(gender) + " · " + escHtml(cat) : escHtml(gender || cat);
+
+        var tr = document.createElement("tr");
+        tr.innerHTML =
+          "<td class='nsr-name'>" + displayName + "</td>" +
+          "<td class='nsr-year'>" + (year || "—") + "</td>" +
+          "<td class='nsr-time'>" + fmtSec(ft) + "</td>" +
+          "<td class='nsr-time'>" + fmtSec(ht) + "</td>" +
+          "<td class='nsr-split'>" + fmtSplit(sr) + "</td>" +
+          "<td class='nsr-cat'>"  + catGender + "</td>" +
+          "<td class='nsr-nat'>"  + escHtml(nat) + "</td>";
+        var atd = document.createElement("td");
+        atd.className = "nsr-analyse";
+        var abtn = document.createElement("button");
+        abtn.className = "amr-trigger-btn";
+        abtn.textContent = "Analyse";
+        abtn.setAttribute("aria-label", "Analyse " + first + " " + last + (year ? " " + year : "") + " race");
+        (function (row) {
+          abtn.addEventListener("click", function () {
+            if (typeof window.amrSelectRunner === "function") window.amrSelectRunner(row);
+          });
+        }(r));
+        atd.appendChild(abtn);
+        tr.appendChild(atd);
+        tbody.appendChild(tr);
+      });
+
+      resultsEl.hidden = false;
+    });
+  }
+
+  // ── Wire up events ────────────────────────────────────────────────────────
+  document.addEventListener("DOMContentLoaded", function () {
+    var btn   = document.getElementById("nc-search-btn");
+    var input = document.getElementById("nc-search-input");
+    if (!btn || !input) return;
+
+    btn.addEventListener("click", doSearch);
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") doSearch();
+    });
+
+    // Auto-search from ?q= URL param (e.g. linked from homepage teaser)
+    var qMatch = window.location.search.match(/[?&]q=([^&]*)/);
+    if (qMatch) {
+      var q = decodeURIComponent(qMatch[1].replace(/\+/g, " "));
+      if (q) {
+        input.value = q;
+        var searchEl = document.getElementById("nc-search-block") || document.getElementById("names-content");
+        if (searchEl) searchEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(doSearch, 200);
+      }
+    }
+  });
+}());
+</script>
+<script>
+(function () {
+  "use strict";
+
+  var HALF_KM = 21.0975;
+
+  // Band medians from the 2014–2026 dataset (split_by_band.by_band)
+  var BANDS = [
+    { max:  9000, label: "Sub-2:30",  median: 1.0255 },
+    { max: 10800, label: "2:30\u20133:00", median: 1.0322 },
+    { max: 12600, label: "3:00\u20133:30", median: 1.0576 },
+    { max: 14400, label: "3:30\u20134:00", median: 1.0722 },
+    { max: 16200, label: "4:00\u20134:30", median: 1.1184 },
+    { max: 18000, label: "4:30\u20135:00", median: 1.1548 },
+    { max: 21600, label: "5:00\u20136:00", median: 1.1918 },
+    { max: Infinity, label: "6:00+",   median: 1.1919 }
+  ];
+
+  // ─── Helpers ───────────────────────────────────────────────────────────────
+  function p2(n) { return n < 10 ? "0" + n : String(n); }
+
+  function fmtHMS(s) {
+    s = Math.round(s);
+    return Math.floor(s / 3600) + ":" + p2(Math.floor((s % 3600) / 60)) + ":" + p2(s % 60);
+  }
+
+  function fmtDiff(s) {
+    s = Math.round(Math.abs(s));
+    var m = Math.floor(s / 60), sec = s % 60;
+    return m > 0 ? m + "m\u00a0" + p2(sec) + "s" : sec + "s";
+  }
+
+  function fmtPacePerKm(sPerKm) {
+    var t = Math.round(Math.abs(sPerKm));
+    return Math.floor(t / 60) + ":" + p2(t % 60) + "\u00a0/km";
+  }
+
+  function fmtPaceDiff(sPerKm) {
+    var sign = sPerKm <= 0 ? "\u2212" : "+";
+    var t = Math.round(Math.abs(sPerKm));
+    var m = Math.floor(t / 60), sec = t % 60;
+    return m === 0 ? sign + sec + "s/km" : sign + m + "m\u00a0" + p2(sec) + "s/km";
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+
+  function getBand(finSec) {
+    for (var i = 0; i < BANDS.length; i++) {
+      if (finSec < BANDS[i].max) return BANDS[i];
+    }
+    return BANDS[BANDS.length - 1];
+  }
+
+  // ─── Race profile classification ──────────────────────────────────────────
+  function classifyProfile(ratio) {
+    if (ratio === null || ratio === undefined || isNaN(ratio)) return null;
+    if (ratio < 1.00) return { label: "Strong Finish",   cls: "amr-badge-strong",  desc: "You ran a negative split \u2014 your second half was faster than your first. This is rare: fewer than 6% of finishers in the dataset manage it." };
+    if (ratio < 1.03) return { label: "Even Split",      cls: "amr-badge-even",    desc: "Very even pacing throughout. Only around 10% of finishers in the dataset run a ratio this low." };
+    if (ratio < 1.08) return { label: "Controlled Race", cls: "amr-badge-control", desc: "A controlled positive split, consistent with disciplined early pacing. Typical of faster finish bands." };
+    if (ratio < 1.15) return { label: "Slight Fade",     cls: "amr-badge-slight",  desc: "A moderate positive split, in line with how most runners at this level finish." };
+    return                    { label: "Late Fade",       cls: "amr-badge-late",    desc: "A significant positive split \u2014 the second half was considerably slower than the first." };
+  }
+
+  // ─── Target time parser ───────────────────────────────────────────────────
+  function parseTargetTime(raw) {
+    var s = raw.trim().toLowerCase()
+      .replace(/\bmarathon\b/g, "").replace(/\btime\b/g, "")
+      .replace(/\s+/g, " ").trim();
+    var m;
+    // h:mm:ss or h:mm
+    m = s.match(/^(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
+    if (m) {
+      var h = +m[1], min = +m[2], sec = m[3] ? +m[3] : 0;
+      if (min >= 60 || sec >= 60) return null;
+      return h * 3600 + min * 60 + sec;
+    }
+    // 3h45m or 3h45
+    m = s.match(/^(\d{1,2})h\s*(\d{1,2})m?$/);
+    if (m) return +m[1] * 3600 + +m[2] * 60;
+    // 4h or 4 hours
+    m = s.match(/^(\d{1,2})\s*h(?:ours?)?$/);
+    if (m) return +m[1] * 3600;
+    return null;
+  }
+
+  // ─── Runner summary card HTML ─────────────────────────────────────────────
+  function renderRunnerCard(r) {
+    var first = r[0], last = r[1], year = r[2];
+    var ft = r[3], ht = r[4], sr = r[5];
+    var gender = r[6] || "", cat = r[7] || "", nat = r[8] || "";
+    var catStr = [gender, cat].filter(Boolean).map(esc).join(" \u00b7 ");
+    return '<div class="amr-rc-name">' + esc(first) + " " + esc(last) + "</div>" +
+      '<div class="amr-rc-meta">' +
+        '<span class="amr-rc-year">' + (year || "\u2014") + "</span>" +
+        (nat ? '<span class="amr-rc-nat">' + esc(nat) + "</span>" : "") +
+        (catStr ? '<span class="amr-rc-cat">' + catStr + "</span>" : "") +
+      "</div>" +
+      '<div class="amr-rc-stats">' +
+        '<div><div class="amr-rc-val">' + (ft ? fmtHMS(ft) : "\u2014") + '</div><div class="amr-rc-lbl">Finish time</div></div>' +
+        '<div><div class="amr-rc-val">' + (ht ? fmtHMS(ht) : "\u2014") + '</div><div class="amr-rc-lbl">Halfway</div></div>' +
+        '<div><div class="amr-rc-val">' + (sr !== null && sr !== undefined ? sr.toFixed(3) + "\u00d7" : "\u2014") + '</div><div class="amr-rc-lbl">Split ratio</div></div>' +
+      "</div>";
+  }
+
+  // ─── Full analysis render ─────────────────────────────────────────────────
+  function renderAnalysis(r, targetSec) {
+    var ft = r[3], ht = r[4], sr = r[5];
+    var hasHalf = (ht !== null && ht !== undefined && ht > 0 && ft > 0 && ht < ft);
+    var secondH  = hasHalf ? (ft - ht) : null;
+    var splitDif = hasHalf ? (secondH - ht) : null;
+    var ratio    = hasHalf ? (secondH / ht)
+                 : ((sr !== null && sr !== undefined && !isNaN(sr)) ? sr : null);
+    var band    = getBand(ft);
+    var profile = classifyProfile(ratio);
+
+    // ── 1. Target vs Actual ──────────────────────────────────────────────────
+    var diff     = ft - targetSec;
+    var onTarget = Math.abs(diff) < 30;
+    var beat     = diff < 0;
+    var diffSign = diff >= 0 ? "+" : "\u2212";
+    var stmtText = onTarget
+      ? "You finished within 30 seconds of your target \u2014 effectively on pace."
+      : (beat
+          ? "You beat your target by <strong>" + fmtDiff(diff) + "</strong>."
+          : "You finished <strong>" + fmtDiff(diff) + " slower</strong> than your target.");
+    var diffClass = onTarget ? "" : (beat ? "amr-diff-beat" : "amr-diff-miss");
+
+    var overviewHtml =
+      '<div class="amr-overview">' +
+        '<div class="amr-ov-cell"><div class="amr-ov-val">' + fmtHMS(ft) + '</div><div class="amr-ov-lbl">Actual finish</div></div>' +
+        '<div class="amr-ov-sep">vs</div>' +
+        '<div class="amr-ov-cell"><div class="amr-ov-val">' + fmtHMS(targetSec) + '</div><div class="amr-ov-lbl">Your target</div></div>' +
+        '<div class="amr-ov-sep">=</div>' +
+        '<div class="amr-ov-cell"><div class="amr-ov-val ' + diffClass + '">' + diffSign + fmtDiff(diff) + '</div><div class="amr-ov-lbl">vs target</div></div>' +
+      '</div>' +
+      '<p class="amr-stmt">' + stmtText + '</p>';
+
+    var profileRowHtml = "";
+    if (profile) {
+      profileRowHtml =
+        '<div class="amr-profile-row">' +
+          '<span class="amr-badge ' + profile.cls + '">' + esc(profile.label) + '</span>' +
+          (ratio !== null ? '<span class="amr-profile-ratio">Split ratio: ' + ratio.toFixed(3) + '\u00d7</span>' : '') +
+          '<span class="amr-profile-desc">' + esc(profile.desc) + '</span>' +
+        '</div>';
+    }
+
+    // ── 2. Pacing Summary ────────────────────────────────────────────────────
+    var card2 = "";
+    if (hasHalf) {
+      var isPos    = splitDif >= 0;
+      var pctFade  = ((ratio - 1) * 100).toFixed(1);
+      card2 =
+        '<div class="amr-card">' +
+          '<div class="amr-card-title">Pacing Summary</div>' +
+          '<div class="amr-split-row">' +
+            '<div class="amr-split-cell"><div class="amr-split-time">' + fmtHMS(ht) + '</div><div class="amr-split-lbl">First half</div></div>' +
+            '<div class="amr-split-arrow">' + (isPos ? "&rarr;&darr;" : "&rarr;&uarr;") + '</div>' +
+            '<div class="amr-split-cell"><div class="amr-split-time ' + (isPos ? "amr-split-slower" : "amr-split-faster") + '">' + fmtHMS(secondH) + '</div><div class="amr-split-lbl">Second half</div></div>' +
+          '</div>' +
+          '<p class="amr-card-body">Based on your splits, you ran a <strong>' + (isPos ? "positive" : "negative") + ' split</strong> of ' + fmtDiff(splitDif) +
+            (ratio !== null ? ' (' + ratio.toFixed(3) + '\u00d7).' : '.') +
+            (isPos ? " Your second half was " + pctFade + "% slower than your first." : " Your second half was faster than your first.") +
+          '</p>' +
+        '</div>';
+    } else {
+      card2 =
+        '<div class="amr-card amr-card-muted">' +
+          '<div class="amr-card-title">Pacing Summary</div>' +
+          '<p class="amr-card-body">No half-marathon split recorded for this result \u2014 pacing breakdown cannot be calculated.</p>' +
+        '</div>';
+    }
+
+    // ── 3. First Half vs Target Pace ─────────────────────────────────────────
+    var card3 = "";
+    if (hasHalf) {
+      var targetHalf   = targetSec / 2;
+      var actualPace   = ht / HALF_KM;
+      var targetPace   = targetHalf / HALF_KM;
+      var paceDiff     = actualPace - targetPace;   // negative = went faster
+      var halfDiff     = ht - targetHalf;            // negative = reached halfway earlier
+      var paceNote;
+      if (Math.abs(paceDiff) < 2) {
+        paceNote = "Your first-half pace was <strong>roughly on target</strong>.";
+      } else if (paceDiff < 0) {
+        paceNote = "Your first half was approximately <strong>" + fmtPaceDiff(paceDiff) + " faster than target pace</strong>.";
+      } else {
+        paceNote = "Your first half was approximately <strong>" + fmtPaceDiff(paceDiff) + " slower than target pace</strong>.";
+      }
+      var halfCtx = Math.abs(halfDiff) < 30
+        ? "You reached halfway within 30 seconds of your target half split."
+        : (halfDiff < 0
+            ? "You reached halfway " + fmtDiff(halfDiff) + " ahead of your target half split."
+            : "You reached halfway " + fmtDiff(halfDiff) + " behind your target half split.");
+      var warnCls = paceDiff < -3 ? "amr-card amr-card-warn" : "amr-card";
+      card3 =
+        '<div class="' + warnCls + '">' +
+          '<div class="amr-card-title">First Half vs Target Pace</div>' +
+          '<div class="amr-pace-compare">' +
+            '<div class="amr-pace-cell"><div class="amr-pace-val">' + fmtPacePerKm(actualPace) + '</div><div class="amr-pace-lbl">Your first-half pace</div></div>' +
+            '<div class="amr-pace-sep">vs</div>' +
+            '<div class="amr-pace-cell"><div class="amr-pace-val">' + fmtPacePerKm(targetPace) + '</div><div class="amr-pace-lbl">Target pace (even split)</div></div>' +
+          '</div>' +
+          '<p class="amr-card-body">' + paceNote + " " + halfCtx + '</p>' +
+        '</div>';
+    }
+
+    // ── 4. Second Half ───────────────────────────────────────────────────────
+    var card4 = "";
+    if (hasHalf) {
+      var cost    = secondH - ht;
+      var costPct = ((ratio - 1) * 100).toFixed(1);
+      var costNote;
+      if (cost <= 0) {
+        costNote = "Your second half was <strong>" + fmtDiff(cost) + " faster</strong> than your first \u2014 a negative split.";
+      } else if (cost < 120) {
+        costNote = "Your second half was <strong>" + fmtDiff(cost) + " slower</strong> than your first, a modest " + costPct + "% fade.";
+      } else {
+        costNote = "Your second half took <strong>" + fmtDiff(cost) + " longer</strong> than your first, a " + costPct + "% slowdown. In this dataset, second-half fades of this scale are common across the field \u2014 the field-wide median positive split is around 7.4 minutes.";
+      }
+      card4 =
+        '<div class="amr-card">' +
+          '<div class="amr-card-title">Second Half</div>' +
+          '<p class="amr-card-body">' + costNote + '</p>' +
+        '</div>';
+    }
+
+    // ── 5. Similar Runner Comparison ─────────────────────────────────────────
+    var card5 = "";
+    if (ratio !== null) {
+      var rDiff = ratio - band.median;
+      var compWord;
+      if (Math.abs(rDiff) < 0.008)  compWord = "very similar to typical";
+      else if (rDiff < -0.025)      compWord = "notably more even than typical";
+      else if (rDiff < 0)           compWord = "slightly more even than typical";
+      else if (rDiff < 0.025)       compWord = "slightly more faded than typical";
+      else                          compWord = "more faded than typical";
+      card5 =
+        '<div class="amr-card">' +
+          '<div class="amr-card-title">Compared with Similar Finishers</div>' +
+          '<div class="amr-band-compare">' +
+            '<div class="amr-band-cell"><div class="amr-band-val">' + ratio.toFixed(3) + '\u00d7</div><div class="amr-band-lbl">Your split ratio</div></div>' +
+            '<div class="amr-band-sep">vs</div>' +
+            '<div class="amr-band-cell"><div class="amr-band-val">' + band.median.toFixed(3) + '\u00d7</div><div class="amr-band-lbl">Median \u2014 ' + esc(band.label) + ' finishers</div></div>' +
+          '</div>' +
+          '<p class="amr-card-body">Compared with runners in the <strong>' + esc(band.label) + '</strong> finish band, your pacing was <strong>' + compWord + '</strong> for that group.</p>' +
+        '</div>';
+    }
+
+    // ── 7. Wider finding ─────────────────────────────────────────────────────
+    var findingHtml =
+      '<div class="amr-finding">' +
+        '<div class="amr-finding-label">From the dataset</div>' +
+        '<p>This analysis draws on 529,776 finishers across the 2014\u20132026 London Marathon. ' +
+        'One of the main findings is that small differences in relative first-half pace tend to be associated with larger differences in second-half slowdown \u2014 ' +
+        'the correlation between relative first-half speed and second-half fade across the dataset is r&nbsp;=&nbsp;\u22120.58. ' +
+        '<a href="findings.html">Explore the full findings \u2192</a></p>' +
+      '</div>';
+
+    return overviewHtml + profileRowHtml +
+      '<div class="amr-cards-grid">' + card2 + card3 + card4 + card5 + '</div>' +
+      findingHtml;
+  }
+
+  // ─── State & public API ───────────────────────────────────────────────────
+  var currentRunner = null;
+
+  window.amrSelectRunner = function (runnerArr) {
+    currentRunner = runnerArr;
+    var panel   = document.getElementById("amr-panel");
+    var rcCard  = document.getElementById("amr-runner-card");
+    var output  = document.getElementById("amr-output");
+    var errorEl = document.getElementById("amr-target-error");
+    var input   = document.getElementById("amr-target-input");
+    if (!panel) return;
+    rcCard.innerHTML = renderRunnerCard(runnerArr);
+    output.hidden    = true;
+    output.innerHTML = "";
+    if (errorEl) { errorEl.hidden = true; errorEl.textContent = ""; }
+    if (input)   input.value = "";
+    panel.hidden = false;
+    setTimeout(function () { panel.scrollIntoView({ behavior: "smooth", block: "nearest" }); }, 60);
+  };
+
+  window.amrResetPanel = function () {
+    currentRunner = null;
+    var panel   = document.getElementById("amr-panel");
+    var output  = document.getElementById("amr-output");
+    var errorEl = document.getElementById("amr-target-error");
+    if (panel)   panel.hidden = true;
+    if (output)  { output.hidden = true; output.innerHTML = ""; }
+    if (errorEl) { errorEl.hidden = true; errorEl.textContent = ""; }
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    var analyseBtn = document.getElementById("amr-analyse-btn");
+    var closeBtn   = document.getElementById("amr-close-btn");
+    var input      = document.getElementById("amr-target-input");
+    var errorEl    = document.getElementById("amr-target-error");
+    var output     = document.getElementById("amr-output");
+    if (!analyseBtn) return;
+
+    function runAnalysis() {
+      if (!currentRunner) return;
+      var raw = input ? input.value : "";
+      var targetSec = parseTargetTime(raw);
+      if (targetSec === null || targetSec < 7200 || targetSec > 28800) {
+        if (errorEl) {
+          errorEl.textContent = targetSec === null
+            ? "Please enter a valid time (e.g. 4:00, 3:45:00, 3h30)."
+            : "Target time must be between 2:00:00 and 8:00:00.";
+          errorEl.hidden = false;
+        }
+        return;
+      }
+      if (errorEl) { errorEl.hidden = true; errorEl.textContent = ""; }
+      output.innerHTML = renderAnalysis(currentRunner, targetSec);
+      output.hidden = false;
+    }
+
+    analyseBtn.addEventListener("click", runAnalysis);
+    if (input)    input.addEventListener("keydown", function (e) { if (e.key === "Enter") runAnalysis(); });
+    if (closeBtn) closeBtn.addEventListener("click", window.amrResetPanel);
+  });
+}());
+</script>
 </body>
 </html>
